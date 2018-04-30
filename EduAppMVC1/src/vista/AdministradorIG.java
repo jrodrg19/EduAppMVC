@@ -48,7 +48,24 @@ public class AdministradorIG extends JFrame {
 	public JTextField nombreasg_field;
 	public JTextField TextCurso;
 	public JTextField codigoprofasg_field;
-
+	public JLabel lblCodigo;
+	public JButton btnNewButton;
+	public JButton btnNuevoProfesor;
+	public JButton btnNuevoProfesor_1;
+	public JButton btnNuevoAlumno;
+	public JButton btnNewButton_1;
+	public JButton btnMostrarUsuario;
+	public JButton btnNewButton_2;
+	public JButton btnModificarProfesor;
+	public JButton btnModificarAlumno;
+	public JButton btnModificarUsuario;
+	public JButton btnNuevaAsignatura;
+	public JButton btnMostrarAsignatura;
+	public JButton btnEliminarAsignatura;
+	public JButton btnModificarAsignatura;
+	public JButton btnGenerarListadoCurso;
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -96,9 +113,9 @@ public class AdministradorIG extends JFrame {
 		Curso_field = new JTextField();
 		Curso_field.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Mostrar Alumnos");
+		btnNewButton = new JButton("Mostrar Alumnos");
 		
-		JButton btnNuevoProfesor = new JButton("Mostrar Profesor");
+		btnNuevoProfesor = new JButton("Mostrar Profesor");
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
@@ -107,9 +124,9 @@ public class AdministradorIG extends JFrame {
 		
 		JLabel lblCodigo = new JLabel("Codigo");
 		
-		JButton btnNuevoProfesor_1 = new JButton("Nuevo Profesor");
+		btnNuevoProfesor_1 = new JButton("Nuevo Profesor");
 		
-		JButton btnNuevoAlumno = new JButton("Nuevo Alumno");
+		btnNuevoAlumno = new JButton("Nuevo Alumno");
 		
 		JLabel lblCodigo_1 = new JLabel("Codigo");
 		
@@ -126,21 +143,21 @@ public class AdministradorIG extends JFrame {
 		tipo_field = new JTextField();
 		tipo_field.setColumns(10);
 		
-		JButton btnNewButton_1 = new JButton("Nuevo Usuario");
+		btnNewButton_1 = new JButton("Nuevo Usuario");
 		
-		JButton btnMostrarUsuario = new JButton("Mostrar Usuario");
+		btnMostrarUsuario = new JButton("Mostrar Usuario");
 		
-		JButton btnNewButton_2 = new JButton("Eliminar Usuario");
+		btnNewButton_2 = new JButton("Eliminar Usuario");
 		
-		JButton btnModificarProfesor = new JButton("Modificar Profesor");
+		btnModificarProfesor = new JButton("Modificar Profesor");
 		
 		JLabel lblAlumnoprofesor = new JLabel("ALUMNO/PROFESOR");
 		
 		JLabel lblUsuario = new JLabel("USUARIO");
 		
-		JButton btnModificarAlumno = new JButton("Modificar Alumno");
+		btnModificarAlumno = new JButton("Modificar Alumno");
 		
-		JButton btnModificarUsuario = new JButton("Modificar Usuario");
+		btnModificarUsuario = new JButton("Modificar Usuario");
 		
 		JLabel lblAdministrador = new JLabel("ADMINISTRADOR");
 		
@@ -158,18 +175,18 @@ public class AdministradorIG extends JFrame {
 		nombreasg_field = new JTextField();
 		nombreasg_field.setColumns(10);
 		
-		JButton btnNuevaAsignatura = new JButton("Nueva Asignatura");
+		btnNuevaAsignatura = new JButton("Nueva Asignatura");
 		
-		JButton btnMostrarAsignatura = new JButton("Mostrar Asignatura");
+		btnMostrarAsignatura = new JButton("Mostrar Asignatura");
 
-		JButton btnEliminarAsignatura = new JButton("Eliminar Asignatura");
+		btnEliminarAsignatura = new JButton("Eliminar Asignatura");
 
-		JButton btnModificarAsignatura = new JButton("Modificar Asignatura");
+		btnModificarAsignatura = new JButton("Modificar Asignatura");
 
 		TextCurso = new JTextField();
 		TextCurso.setColumns(10);
 		
-		JButton btnGenerarListadoCurso = new JButton("Generar Listado Curso");
+		btnGenerarListadoCurso = new JButton("Generar Listado Curso");
 
 		JLabel lblCurso_1 = new JLabel("Curso");
 		

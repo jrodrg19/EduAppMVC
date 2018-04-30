@@ -40,7 +40,15 @@ public class ProfesorIG extends JFrame {
 	public JTextField profesor_field;
 	public JTextField TextCodigoAlum;
 	public JTextField TextCodigoProfesor;
-
+	public JLabel lblCodigoProfesor;
+	public JButton btnNuevaNota;
+	public JButton btnModificarNota;
+	public JButton btnMostrarNota;
+	public JButton btnEliminarNota ;
+	public JButton btnMostrarProfesor;
+	public JButton btnMostrarAlumno;
+	public JButton btnBuscarNota;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -102,21 +110,21 @@ public class ProfesorIG extends JFrame {
 		profesor_field = new JTextField();
 		profesor_field.setColumns(10);
 		
-		JLabel lblCodigoProfesor = new JLabel("Codigo Profesor");
+		lblCodigoProfesor = new JLabel("Codigo Profesor");
 		
-		JButton btnNuevaNota = new JButton("Nueva Nota");
+		btnNuevaNota = new JButton("Nueva Nota");
 		
-		JButton btnModificarNota = new JButton("Modificar Nota");
+		btnModificarNota = new JButton("Modificar Nota");
 		
-		JButton btnMostrarNota = new JButton("Mostrar Nota");
+		btnMostrarNota = new JButton("Mostrar Nota");
 		
-		JButton btnEliminarNota = new JButton("Eliminar Nota");
+		btnEliminarNota = new JButton("Eliminar Nota");
 	
-		JButton btnMostrarProfesor = new JButton("Mostrar Profesor");
+		btnMostrarProfesor = new JButton("Mostrar Profesor");
 	
-		JButton btnMostrarAlumno = new JButton("Mostrar Alumno");
+		btnMostrarAlumno = new JButton("Mostrar Alumno");
 
-		JButton btnBuscarNota = new JButton("Buscar Nota");
+		btnBuscarNota = new JButton("Buscar Nota");
 		
 		TextCodigoAlum = new JTextField();
 		TextCodigoAlum.setColumns(10);

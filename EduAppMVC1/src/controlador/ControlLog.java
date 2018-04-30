@@ -30,8 +30,8 @@ public class ControlLog implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		try {
 			
-			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			Connection connection = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\usuario\\Desktop\\COLEGIO.accdb");
+			
+			Connection connection = ConexionAccess.getCon();
 			
 			
 			String Usuario_Cod = log.getUsername_field().getText();
@@ -43,7 +43,6 @@ public class ControlLog implements ActionListener{
 			//String sql = "select * from USUARIOS where (Usuario_Cod = ? and Usuario_pass = ? and Usuario_tipo = ?); ";
 			PreparedStatement statement = connection.prepareStatement(sql);
 		
-
 			statement.setString(1, Usuario_Cod);
 			statement.setString(2, Usuario_pass);
 			statement.setString(3, Usuario_tipo);
@@ -76,6 +75,7 @@ public class ControlLog implements ActionListener{
 						public void run() {
 							try {
 								ProfesorIG frame = new ProfesorIG();
+								ControlProfesor controlProfe=new ControlProfesor(frame);
 								frame.setVisible(true);
 							} catch (Exception e) {
 								e.printStackTrace();
@@ -108,7 +108,7 @@ public class ControlLog implements ActionListener{
 			}
 			
 			
-		} catch (ClassNotFoundException | SQLException ex) {
+		} catch ( SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
 		}

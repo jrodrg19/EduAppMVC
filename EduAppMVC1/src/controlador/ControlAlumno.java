@@ -13,6 +13,9 @@ import java.sql.Statement;
 
 import javax.swing.table.DefaultTableModel;
 
+import org.omg.IOP.CodecFactoryOperations;
+
+import conexion.ConexionAccess;
 import modelo.*;
 import vista.AlumnoIG;
 
@@ -46,8 +49,7 @@ public class ControlAlumno implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		try{
-			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			Connection connection = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\usuario\\Desktop\\COLEGIO.accdb");
+			Connection connection = ConexionAccess.getCon();
 			
 			String  Nota_Alum_Codigo = ventanaAlum.codigo_field.getText();
 			
@@ -82,7 +84,7 @@ public class ControlAlumno implements ActionListener{
 				modelo.addRow(fila);
 				
 			}
-			}catch (ClassNotFoundException | SQLException L) {
+			}catch (SQLException L) {
 			// TODO Auto-generated catch block
 			L.printStackTrace();
 		}
@@ -106,9 +108,8 @@ public class ControlAlumno implements ActionListener{
 		
 		public void actionPerformed(ActionEvent e) {
 			try{
-			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			Connection connection = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\usuario\\Desktop\\COLEGIO.accdb");
-			
+				
+			Connection connection = ConexionAccess.getCon();
 			String  Nota_Alum_Codigo = ventanaAl.codigo_field.getText();
 			
 			//String sql = "SELECT * FROM ALUMNOS WHERE Alum_Codigo = ?";
@@ -142,7 +143,7 @@ public class ControlAlumno implements ActionListener{
 				modelo.addRow(fila);
 				
 			}
-			}catch (ClassNotFoundException | SQLException L) {
+			}catch ( SQLException L) {
 			// TODO Auto-generated catch block
 			L.printStackTrace();
 		}
@@ -169,9 +170,7 @@ public class ControlAlumno implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			try{
 				
-				
-				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-				Connection connection = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\usuario\\Desktop\\COLEGIO.accdb");
+				Connection connection=ConexionAccess.getCon();
 				
 				Statement stm = connection.createStatement();
 				Alumno alu = new Alumno();
@@ -200,7 +199,7 @@ public class ControlAlumno implements ActionListener{
 					modelo.addRow(fila);
 					
 				}
-				}catch (ClassNotFoundException | SQLException L) {
+				}catch ( SQLException L) {
 				// TODO Auto-generated catch block
 				L.printStackTrace();
 			}
@@ -227,8 +226,7 @@ public class ControlAlumno implements ActionListener{
 			
 			try{
 
-				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-				Connection connection = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\usuario\\Desktop\\COLEGIO.accdb");
+				Connection connection = ConexionAccess.getCon();
 
 				Statement stm = connection.createStatement();
 				//String sql = "select * FROM ASIGNATURAS";
@@ -257,7 +255,7 @@ public class ControlAlumno implements ActionListener{
 					modelo.addRow(fila);
 
 				}
-			}catch (ClassNotFoundException | SQLException L) {
+			}catch (SQLException L) {
 				// TODO Auto-generated catch block
 				L.printStackTrace();
 			}
@@ -284,8 +282,7 @@ public class ControlAlumno implements ActionListener{
 
 			try{
 
-				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-				Connection connection = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\usuario\\Desktop\\COLEGIO.accdb");
+				Connection connection = ConexionAccess.getCon();
 
 				Statement stm = connection.createStatement();
 				Nota nota = new Nota();
@@ -313,7 +310,7 @@ public class ControlAlumno implements ActionListener{
 					modelo.addRow(fila);
 
 				}
-			}catch (ClassNotFoundException | SQLException L) {
+			}catch (SQLException L) {
 				// TODO Auto-generated catch block
 				L.printStackTrace();
 			}
@@ -341,9 +338,7 @@ public class ControlAlumno implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
 			try{
 
-
-				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-				Connection connection = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\usuario\\Desktop\\COLEGIO.accdb");
+				Connection connection = ConexionAccess.getCon();
 
 				Statement stm = connection.createStatement();
 				Profesor prof = new Profesor();
@@ -372,7 +367,7 @@ public class ControlAlumno implements ActionListener{
 					modelo.addRow(fila);
 
 				}
-			}catch (ClassNotFoundException | SQLException L) {
+			}catch (SQLException L) {
 				// TODO Auto-generated catch block
 				L.printStackTrace();
 			}

@@ -2,49 +2,44 @@ package conexion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
 public class ConexionAccess {
 
-	static Connection con ;
+	private static String driver = "com.mysql.jdbc.Driver";
+
+	private static String linea_Conectar = "jdbc:mysql://localhost:3306/colegio?useSSL=false";
+
+	private static String usuario = "root";
+
+	private static String passwd = "";
+
+	private static Connection conection = null;
+
+	/**
+	 * 
+	 * @return
+	 */
 	public static Connection getCon() {
-		return con;
-	}
 
-	public static void setCon(Connection con) {
-		ConexionAccess.con = null;
-	}
-
-	static String driver = "net.ucanaccess.jdbc.UcanaccessDriver";
-	static String url = "jdbc:ucanaccess://C:\\Users\\usuario\\Desktop\\COLEGIO.accdb";
-
-	public static Connection obtenerConexion( ){
-		
-		try{
-			if(con == null){
-				Class.forName(driver);
-				con = DriverManager.getConnection(url);
-				JOptionPane.showMessageDialog(null,"Conexion Correcta");
-			}
-
-		}catch(Exception ex){
-			ex.printStackTrace();
-			con = null;
-		}
-		return con;
-	}
-
-	public static Connection cerrarConexion() throws Exception {
 		try {
 
-			con.close();
-			JOptionPane.showMessageDialog(null,"Cierre correcto de la conexión con la base de datos");
+			Class.forName(driver);
+
+			conection=DriverManager.getConnection(linea_Conectar,usuario,passwd);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		catch (Exception e){
-			throw new Exception("Al cerrar la conexión de la base de datos. " + e.getMessage());
-		}
-		return con;
+
+		return conection;
+
 	}
 }
 
