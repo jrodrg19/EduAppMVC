@@ -29,6 +29,7 @@ public class Login extends JFrame {
 	public JTextField username_field;
 	public JTextField password_field;
 	public JTextField tipe_field;
+	public JButton btnLogin;
 
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,7 +74,7 @@ public class Login extends JFrame {
 		tipe_field.setBounds(163, 170, 176, 33);
 		contentPane.add(tipe_field); 
 		
-		JButton btnLogin = new JButton("Login");
+		btnLogin = new JButton("Login");
 		
 		btnLogin.setBounds(202, 214, 89, 23);
 		contentPane.add(btnLogin);

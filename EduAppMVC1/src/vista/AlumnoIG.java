@@ -31,6 +31,13 @@ public class AlumnoIG extends JFrame {
 	public JPanel contentPane;
 	public JTable table;
 	public JTextField codigo_field;
+	
+	public JButton btnMostrarProfesor;
+	public JButton btnMostrarAlumno;
+	public JButton btnMostrarAsignatura;
+	public JButton btnBuscarCalificacion;
+	public JButton btnBuscarDatos;
+	public JButton btnMostrarNota;
 
 	/**
 	 * Launch the application.
@@ -62,22 +69,22 @@ public class AlumnoIG extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
-		JButton btnMostrarProfesor = new JButton("Mostrar Profesor");
+		btnMostrarProfesor = new JButton("Mostrar Profesor");
 		
-		JButton btnMostrarAlumno = new JButton("Mostrar Alumno");
+		btnMostrarAlumno = new JButton("Mostrar Alumno");
 		
-		JButton btnMostrarAsignatura = new JButton("Mostrar Asignatura");
+		btnMostrarAsignatura = new JButton("Mostrar Asignatura");
 		
-		JButton btnBuscarCalificacion = new JButton("Buscar calificacion");
+		btnBuscarCalificacion = new JButton("Buscar calificacion");
 		
 		codigo_field = new JTextField();
 		codigo_field.setColumns(10);
 		
 		JLabel lblCodigoAlumno = new JLabel("Codigo Alumno");
 		
-		JButton btnBuscarDatos = new JButton("Buscar Datos");
+		btnBuscarDatos = new JButton("Buscar Datos");
 		
-		JButton btnMostrarNota = new JButton("Mostrar Nota");
+		btnMostrarNota = new JButton("Mostrar Nota");
 	
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
