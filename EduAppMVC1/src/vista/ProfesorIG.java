@@ -28,18 +28,18 @@ import java.awt.event.ActionEvent;
 
 public class ProfesorIG extends JFrame {
 
-	private JPanel contentPane;
-	private JTable table;
-	private JTextField codigo_field;
-	private JTextField alumno_field;
-	private JTextField asignatura_field;
-	private JTextField nota1_field;
-	private JTextField nota2_field;
-	private JTextField nota3_field;
-	private JTextField nota4_field;
-	private JTextField profesor_field;
-	private JTextField TextCodigoAlum;
-	private JTextField TextCodigoProfesor;
+	public JPanel contentPane;
+	public JTable table;
+	public JTextField codigo_field;
+	public JTextField alumno_field;
+	public JTextField asignatura_field;
+	public JTextField nota1_field;
+	public JTextField nota2_field;
+	public JTextField nota3_field;
+	public JTextField nota4_field;
+	public JTextField profesor_field;
+	public JTextField TextCodigoAlum;
+	public JTextField TextCodigoProfesor;
 
 	/**
 	 * Launch the application.

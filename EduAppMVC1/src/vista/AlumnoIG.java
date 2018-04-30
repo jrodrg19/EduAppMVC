@@ -28,9 +28,9 @@ import java.awt.event.ActionEvent;
 
 public class AlumnoIG extends JFrame {
 
-	private JPanel contentPane;
-	private JTable table;
-	private JTextField codigo_field;
+	public JPanel contentPane;
+	public JTable table;
+	public JTextField codigo_field;
 
 	/**
 	 * Launch the application.

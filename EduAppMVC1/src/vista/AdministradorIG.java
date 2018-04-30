@@ -32,22 +32,22 @@ import javax.swing.DefaultComboBoxModel;
 
 public class AdministradorIG extends JFrame {
 
-	private JPanel JTable1;
-	private JTextField nombre_field;
-	private JTextField apellido_field;
-	private JTextField edad_field;
-	private JTextField telef_field;
-	private JTextField DNI_field;
-	private JTextField Curso_field;
-	private JTable table;
-	private JTextField codigo_field;
-	private JTextField codigous_field;
-	private JTextField contra_field;
-	private JTextField tipo_field;
-	private JTextField codigoasg_field;
-	private JTextField nombreasg_field;
-	private JTextField TextCurso;
-	private JTextField codigoprofasg_field;
+	public JPanel JTable1;
+	public JTextField nombre_field;
+	public JTextField apellido_field;
+	public JTextField edad_field;
+	public JTextField telef_field;
+	public JTextField DNI_field;
+	public JTextField Curso_field;
+	public JTable table;
+	public JTextField codigo_field;
+	public JTextField codigous_field;
+	public JTextField contra_field;
+	public JTextField tipo_field;
+	public JTextField codigoasg_field;
+	public JTextField nombreasg_field;
+	public JTextField TextCurso;
+	public JTextField codigoprofasg_field;
 
 	/**
 	 * Launch the application.

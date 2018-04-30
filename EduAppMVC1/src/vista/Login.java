@@ -25,10 +25,10 @@ import java.awt.event.ActionEvent;
 public class Login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField username_field;
-	private JTextField password_field;
-	private JTextField tipe_field;
+	public JPanel contentPane;
+	public JTextField username_field;
+	public JTextField password_field;
+	public JTextField tipe_field;
 
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
