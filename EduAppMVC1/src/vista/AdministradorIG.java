@@ -49,13 +49,13 @@ public class AdministradorIG extends JFrame {
 	public JTextField TextCurso;
 	public JTextField codigoprofasg_field;
 	public JLabel lblCodigo;
-	public JButton btnNewButton;
+	public JButton btnMostrarAlum;
+	public JButton btnMostrarProf;
 	public JButton btnNuevoProfesor;
-	public JButton btnNuevoProfesor_1;
 	public JButton btnNuevoAlumno;
-	public JButton btnNewButton_1;
+	public JButton btnNewUser;
 	public JButton btnMostrarUsuario;
-	public JButton btnNewButton_2;
+	public JButton btnDropUser;
 	public JButton btnModificarProfesor;
 	public JButton btnModificarAlumno;
 	public JButton btnModificarUsuario;
@@ -113,9 +113,9 @@ public class AdministradorIG extends JFrame {
 		Curso_field = new JTextField();
 		Curso_field.setColumns(10);
 		
-		btnNewButton = new JButton("Mostrar Alumnos");
+		btnMostrarAlum = new JButton("Mostrar Alumnos");
 		
-		btnNuevoProfesor = new JButton("Mostrar Profesor");
+		btnMostrarProf = new JButton("Mostrar Profesor");
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
@@ -124,7 +124,7 @@ public class AdministradorIG extends JFrame {
 		
 		JLabel lblCodigo = new JLabel("Codigo");
 		
-		btnNuevoProfesor_1 = new JButton("Nuevo Profesor");
+		btnNuevoProfesor = new JButton("Nuevo Profesor");
 		
 		btnNuevoAlumno = new JButton("Nuevo Alumno");
 		
@@ -143,11 +143,11 @@ public class AdministradorIG extends JFrame {
 		tipo_field = new JTextField();
 		tipo_field.setColumns(10);
 		
-		btnNewButton_1 = new JButton("Nuevo Usuario");
+		btnNewUser = new JButton("Nuevo Usuario");
 		
 		btnMostrarUsuario = new JButton("Mostrar Usuario");
 		
-		btnNewButton_2 = new JButton("Eliminar Usuario");
+		btnDropUser = new JButton("Eliminar Usuario");
 		
 		btnModificarProfesor = new JButton("Modificar Profesor");
 		
@@ -255,21 +255,21 @@ public class AdministradorIG extends JFrame {
 							.addGroup(gl_JTable1.createParallelGroup(Alignment.TRAILING)
 								.addComponent(btnNuevoAlumno, Alignment.LEADING)
 								.addGroup(gl_JTable1.createParallelGroup(Alignment.LEADING)
-									.addComponent(btnNewButton)
+									.addComponent(btnMostrarAlum)
 									.addGroup(gl_JTable1.createSequentialGroup()
 										.addGroup(gl_JTable1.createParallelGroup(Alignment.LEADING)
 											.addComponent(btnModificarAlumno)
-											.addComponent(btnNuevoProfesor_1)
+											.addComponent(btnNuevoProfesor)
 											.addComponent(btnModificarProfesor)
-											.addComponent(btnNuevoProfesor))
+											.addComponent(btnMostrarProf))
 										.addGap(145)
 										.addGroup(gl_JTable1.createParallelGroup(Alignment.LEADING)
 											.addGroup(gl_JTable1.createSequentialGroup()
 												.addPreferredGap(ComponentPlacement.RELATED)
 												.addGroup(gl_JTable1.createParallelGroup(Alignment.TRAILING)
-													.addComponent(btnNewButton_1)
+													.addComponent(btnNewUser)
 													.addComponent(btnMostrarUsuario)
-													.addComponent(btnNewButton_2)
+													.addComponent(btnDropUser)
 													.addComponent(btnModificarUsuario)))
 											.addGroup(gl_JTable1.createSequentialGroup()
 												.addGap(17)
@@ -325,7 +325,7 @@ public class AdministradorIG extends JFrame {
 								.addComponent(lblCodigo_1))
 							.addGap(18)
 							.addGroup(gl_JTable1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnNewButton)
+								.addComponent(btnMostrarAlum)
 								.addComponent(lblNombre)
 								.addComponent(lblContrasea)
 								.addComponent(contra_field, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -358,7 +358,7 @@ public class AdministradorIG extends JFrame {
 										.addComponent(lblEdad))
 									.addGap(15))
 								.addGroup(gl_JTable1.createSequentialGroup()
-									.addComponent(btnNewButton_1)
+									.addComponent(btnNewUser)
 									.addPreferredGap(ComponentPlacement.RELATED)))
 							.addComponent(btnMostrarUsuario)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -366,8 +366,8 @@ public class AdministradorIG extends JFrame {
 								.addGroup(gl_JTable1.createParallelGroup(Alignment.BASELINE)
 									.addComponent(DNI_field, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addComponent(lblDni)
-									.addComponent(btnNuevoProfesor))
-								.addComponent(btnNewButton_2)))
+									.addComponent(btnMostrarProf))
+								.addComponent(btnDropUser)))
 						.addGroup(gl_JTable1.createSequentialGroup()
 							.addGap(20)
 							.addComponent(label)
@@ -375,7 +375,7 @@ public class AdministradorIG extends JFrame {
 							.addGroup(gl_JTable1.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btnNuevaAsignatura)
 								.addComponent(telef_field, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnNuevoProfesor_1)
+								.addComponent(btnNuevoProfesor)
 								.addComponent(lblTelefono))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(btnMostrarAsignatura)))

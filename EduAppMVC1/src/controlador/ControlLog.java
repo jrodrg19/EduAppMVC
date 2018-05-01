@@ -60,6 +60,7 @@ public class ControlLog implements ActionListener{
 						public void run() {
 							try {
 								AdministradorIG frame = new AdministradorIG();
+								ControlAdmin controlAdmin=new ControlAdmin(frame);
 								frame.setVisible(true);
 							} catch (Exception e) {
 								e.printStackTrace();
