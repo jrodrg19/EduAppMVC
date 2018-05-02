@@ -12,6 +12,10 @@ public class Nota {
 	private	int Nota_Trim3;
 	private	int Nota_Calif;
 	
+	public Nota() {
+		
+	}
+	
 	public String getNota_Cod() {
 		return Nota_Cod;
 	}

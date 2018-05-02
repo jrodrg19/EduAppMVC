@@ -118,7 +118,7 @@ public class ControlAlumno implements ActionListener{
 			PreparedStatement statement = connection.prepareStatement(sql);
 			
 			
-			 statement.setString(1, Nota_Alum_Codigo);
+			statement.setString(1, Nota_Alum_Codigo);
 			
 			ResultSet rst =statement.executeQuery( );
 			ResultSetMetaData rsMD = rst.getMetaData();

@@ -1,10 +1,16 @@
 package modelo;
 
-public class Asignatura {
+import java.io.Serializable;
+
+public class Asignatura implements Serializable {
 	
 	private String Asig_Cod;
 	private String Asig_Nombre;
 	private String Prof_Asig_Cod;
+	
+	public Asignatura() {
+
+	}
 	
 	public String getAsig_Cod() {
 		return Asig_Cod;
