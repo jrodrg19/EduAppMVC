@@ -3,15 +3,15 @@ package modelo;
 import java.io.Serializable;
 
 public class Asignatura implements Serializable {
-	
+
 	private String Asig_Cod;
 	private String Asig_Nombre;
 	private String Prof_Asig_Cod;
-	
+
 	public Asignatura() {
 
 	}
-	
+
 	public String getAsig_Cod() {
 		return Asig_Cod;
 	}
@@ -30,11 +30,11 @@ public class Asignatura implements Serializable {
 	public void setProf_Asig_Cod(String prof_Asig_Cod) {
 		Prof_Asig_Cod = prof_Asig_Cod;
 	}
-	
+
 	public String mostrarAsignatura(){
-		
+
 		String sql = "select * FROM ASIGNATURAS";			
 		return sql;
-		
+
 	}
 }
