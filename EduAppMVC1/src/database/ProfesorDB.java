@@ -1,29 +1,43 @@
 package database;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class ProfesorDB implements OperacionesDB{
 
 	@Override
-	public void aniadir() {
+	public void aniadir(PreparedStatement nuevo) {
 		// TODO Auto-generated method stub
+		
+		try {
+			
+			nuevo.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
-	public void modificar() {
-		// TODO Auto-generated method stub
+	public void modificar(PreparedStatement mod) {
+		
+		try {
+			mod.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
-	public void eliminar() {
+	public void eliminar(PreparedStatement drop) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public Object consultar(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+	
 }

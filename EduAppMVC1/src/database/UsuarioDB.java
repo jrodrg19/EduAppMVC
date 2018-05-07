@@ -1,8 +1,10 @@
 package database;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class NotaDB implements OperacionesDB{
+public class UsuarioDB implements OperacionesDB{
 
 	@Override
 	public void aniadir(PreparedStatement nuevo) {
@@ -19,6 +21,21 @@ public class NotaDB implements OperacionesDB{
 	@Override
 	public void eliminar(PreparedStatement drop) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public ResultSet obtenerUsuario(PreparedStatement statement) {
+		
+		ResultSet user=null;
+		
+		try {
+			user= statement.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return user;
 		
 	}
 

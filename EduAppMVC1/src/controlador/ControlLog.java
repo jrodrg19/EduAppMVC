@@ -3,15 +3,11 @@ package controlador;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import conexion.ConexionAccess;
 import modelo.Usuario;
 import vista.Login;
 import vista.*;
@@ -29,25 +25,14 @@ public class ControlLog implements ActionListener{
 
 	public void actionPerformed(ActionEvent e) {
 		try {
-			
-			
-			Connection connection = ConexionAccess.getCon();
-			
-			
+							
 			String Usuario_Cod = log.getUsername_field().getText();
 			String Usuario_pass = log.password_field.getText();
 			String Usuario_tipo = log.tipe_field.getText();
 			
-			Usuario us = new Usuario();
-			String sql=us.seleccionarUsuarios();
-			//String sql = "select * from USUARIOS where (Usuario_Cod = ? and Usuario_pass = ? and Usuario_tipo = ?); ";
-			PreparedStatement statement = connection.prepareStatement(sql);
-		
-			statement.setString(1, Usuario_Cod);
-			statement.setString(2, Usuario_pass);
-			statement.setString(3, Usuario_tipo);
+			Usuario us = new Usuario(Usuario_Cod,Usuario_pass,Usuario_tipo);
 			
-			ResultSet set =statement.executeQuery();
+			ResultSet set=us.seleccionarUsuario();
 			
 			if(set.next())
 			{

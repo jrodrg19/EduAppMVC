@@ -5,7 +5,7 @@ public class Alumno {
 		private String alum_Cod;
 		private	String alum_Nombre;
 		private String alum_Apellidos;
-		private	int alum_Edad;
+		private	String alum_Edad;
 		private	String alum_Telefono;
 		private String alum_DNI;
 		private String alum_Curso;	
@@ -14,7 +14,7 @@ public class Alumno {
 			
 		}
 		
-		public Alumno(String cod,String nom, String apell, int edad, String tlf, String dni, String curso ) {
+		public Alumno(String cod,String nom, String apell, String edad, String tlf, String dni, String curso ) {
 			
 			this.setAlum_Cod(cod);
 			this.setAlum_Nombre(nom);
@@ -47,10 +47,10 @@ public class Alumno {
 			this.alum_Apellidos = alum_Apellidos;
 		}
 		
-		public int getAlum_Edad() {
+		public String getAlum_Edad() {
 			return alum_Edad;
 		}
-		public void setAlum_Edad(int alum_Edad) {
+		public void setAlum_Edad(String alum_Edad) {
 			this.alum_Edad = alum_Edad;
 		}
 		

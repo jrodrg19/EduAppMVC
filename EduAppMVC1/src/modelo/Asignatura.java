@@ -7,9 +7,17 @@ public class Asignatura implements Serializable {
 	private String Asig_Cod;
 	private String Asig_Nombre;
 	private String Prof_Asig_Cod;
-
+	
 	public Asignatura() {
+		
+	}
 
+	public Asignatura(String asig_Cod, String asig_Nombre, String codigo_Prof) {
+
+		this.setAsig_Cod(asig_Cod);
+		this.setAsig_Nombre(asig_Nombre);
+		this.setProf_Asig_Cod(codigo_Prof);
+		
 	}
 
 	public String getAsig_Cod() {

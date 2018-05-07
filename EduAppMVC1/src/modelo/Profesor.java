@@ -1,20 +1,23 @@
 package modelo;
 
+import java.sql.Connection;
+
 public class Profesor {
 	
 	private String prof_Cod;
 	private	String prof_Nombre;
 	private String prof_Apellidos;
-	private	int prof_Edad;
+	private	String prof_Edad;
 	private	String prof_Telefono;
 	private String prof_DNI;
 	private String prof_Curso;
+	private Connection connection;
 	
 	public Profesor() {
 
 	}
 	
-	public Profesor(String cod, String nombre, String apell, int edad, String tlf, String dni, String curso){
+	public Profesor(String cod, String nombre, String apell, String edad, String tlf, String dni, String curso){
 				
 		this.setProf_Cod(cod);
 		this.setProf_Nombre(nombre);
@@ -44,10 +47,10 @@ public class Profesor {
 	public void setProf_Apellidos(String prof_Apellidos) {
 		this.prof_Apellidos = prof_Apellidos;
 	}
-	public int getProf_Edad() {
+	public String getProf_Edad() {
 		return prof_Edad;
 	}
-	public void setProf_Edad(int prof_Edad) {
+	public void setProf_Edad(String prof_Edad) {
 		this.prof_Edad = prof_Edad;
 	}
 	public String getProf_Telefono() {

@@ -48,28 +48,12 @@ public class ControlAdmin implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 
-		try{
+		String asignatura_Cod = ventanaAdmin.codigoasg_field.getText();
 
-			Connection connection = ConexionAccess.getCon();
+		Administrador adm = new Administrador();
 
-			String Asignatura_Cod = ventanaAdmin.codigoasg_field.getText();
+		adm.eliminarAsignatura(asignatura_Cod);
 
-
-			Administrador adm = new Administrador();
-			String sql=adm.eliminarAsignatura();
-			//String sql = "DELETE FROM  ASIGNATURAS WHERE Asig_Codigo=?";
-
-			PreparedStatement statement = connection.prepareStatement(sql);
-
-			statement.setString(1, Asignatura_Cod);
-
-			int n=statement.executeUpdate();
-
-		}catch (SQLException L) {
-			// TODO Auto-generated catch block
-			L.printStackTrace();
-		}
-		
 	}
 
 	/**
@@ -84,49 +68,33 @@ public class ControlAdmin implements ActionListener {
 		public BtnDropUser(AdministradorIG ventanaAdmin) {
 
 			this.ventAdmin=ventanaAdmin;
-		
+
 		}
-		
+
 		public void actionPerformed(ActionEvent e) {
 
-			try{
+			String usuario_Cod = ventAdmin.codigous_field.getText();
 
-				Connection connection = ConexionAccess.getCon();
+			Administrador adm = new Administrador();
+			adm.eliminarUsuario(usuario_Cod);
 
-				String Usuario_Cod = ventAdmin.codigous_field.getText();
-
-				Administrador adm = new Administrador();
-				String sql=adm.eliminarUsuario();
-				//String sql = "DELETE FROM  USUARIOS WHERE Usuario_Cod=?";
-
-				PreparedStatement statement = connection.prepareStatement(sql);
-
-				statement.setString(1, Usuario_Cod);
-
-				int n=statement.executeUpdate();
-
-			}catch (SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
-			}
-			
 		}
 
 	}
-	
+
 	/**
 	 * 
 	 * @author Javier
 	 *
 	 */
 	class GeneraListado implements ActionListener{
-		
+
 		private AdministradorIG ventAdmin;
 
 		public GeneraListado(AdministradorIG ventanaAdmin) {
 
 			this.ventAdmin=ventanaAdmin;
-		
+
 		}
 
 		public void actionPerformed(ActionEvent e) {
@@ -171,63 +139,41 @@ public class ControlAdmin implements ActionListener {
 				// TODO Auto-generated catch block
 				L.printStackTrace();
 			}
-			
+
 		}
 
 	}
-	
+
 	/**
 	 * 
 	 * @author Javier
 	 *
 	 */
 	class ModAlum implements ActionListener{
-		
+
 		private AdministradorIG ventAdmin;
 
 		public ModAlum(AdministradorIG ventanaAdmin) {
 
 			this.ventAdmin=ventanaAdmin;
-		
+
 		}
 
 		public void actionPerformed(ActionEvent e) {
 
-			try {
+			String Alum_Codigo = ventAdmin.codigo_field.getText();
+			String Alum_Nombre = ventAdmin.nombre_field.getText();
+			String Alum_Apellido = ventAdmin.apellido_field.getText();
+			String Alum_Edad = ventAdmin.edad_field.getText();
+			String Alum_Telef = ventAdmin.telef_field.getText();
+			String Alum_DNI = ventAdmin.DNI_field.getText();
+			String Alum_Curso = ventAdmin.Curso_field.getText();
 
-				Connection connection = ConexionAccess.getCon();
+			Alumno modificado=new Alumno(Alum_Codigo, Alum_Nombre, Alum_Apellido, Alum_Edad, Alum_Telef, Alum_DNI, Alum_Curso);
 
-				String Alum_Codigo = ventAdmin.codigo_field.getText();
-				String Alum_Nombre = ventAdmin.nombre_field.getText();
-				String Alum_Apellido = ventAdmin.apellido_field.getText();
-				String Alum_Edad = ventAdmin.edad_field.getText();
-				String Alum_Telef = ventAdmin.telef_field.getText();
-				String Alum_DNI = ventAdmin.DNI_field.getText();
-				String Alum_Curso = ventAdmin.Curso_field.getText();
+			Administrador adm = new Administrador();
+			adm.modificarAlumno(modificado);
 
-				Administrador adm = new Administrador();
-				String sql=adm.modificarAlumno();
-				/*String sql = "UPDATE ALUMNOS SET  Alum_Nombre=?, Alum_Apellidos=?, Alum_Edad=?, Alum_Telefono=?, Alum_DNI=?,Alum_Curso=? "
-		                    + "WHERE Alum_Codigo=?";*/
-
-				PreparedStatement statement = connection.prepareStatement(sql);
-
-
-				statement.setString(1, Alum_Nombre);
-				statement.setString(2, Alum_Apellido);
-				statement.setString(3, Alum_Edad);
-				statement.setString(4, Alum_Telef);
-				statement.setString(5, Alum_DNI);
-				statement.setString(6, Alum_Curso);
-				statement.setString(7, Alum_Codigo);
-
-				statement.executeUpdate();
-
-			} catch (SQLException ex) {
-				// TODO Auto-generated catch block
-				ex.printStackTrace();
-			}
-			
 		}
 
 	}
@@ -238,42 +184,26 @@ public class ControlAdmin implements ActionListener {
 	 *
 	 */
 	class ModAsig implements ActionListener{
-		
+
 		private AdministradorIG ventAdmin;
 
 		public ModAsig(AdministradorIG ventanaAdmin) {
 
 			this.ventAdmin=ventanaAdmin;
-		
+
 		}
 
 		public void actionPerformed(ActionEvent e) {
 
-			try{
+			String Asig_Cod = ventAdmin.codigoasg_field.getText();
+			String Asig_Nombre = ventAdmin.nombreasg_field.getText();
+			String Prof_Asig_Cod = ventAdmin.codigoprofasg_field.getText();
 
-				Connection connection = ConexionAccess.getCon();
+			Asignatura mod=new Asignatura(Asig_Cod, Asig_Nombre, Prof_Asig_Cod);
 
-				String Asig_Cod = ventAdmin.codigoasg_field.getText();
-				String Asig_Nombre = ventAdmin.nombreasg_field.getText();
-				String Prof_Asig_Cod = ventAdmin.codigoprofasg_field.getText();
+			Administrador adm = new Administrador();
+			adm.modificarAsignatura(mod);
 
-				Administrador adm = new Administrador();
-				String sql=adm.modificarAsignatura();
-				//String sql = "UPDATE ASIGNATURAS SET  Asig_Nombre=?,Prof_Asig_Cod=?" + "WHERE Asig_Codigo=?"; 
-
-				PreparedStatement statement = connection.prepareStatement(sql);
-
-				statement.setString(3, Asig_Cod);
-				statement.setString(1, Asig_Nombre);
-				statement.setString(2, Prof_Asig_Cod);
-
-
-				int n=statement.executeUpdate();
-			}catch (SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
-			}
-			
 		}
 
 	}
@@ -290,46 +220,25 @@ public class ControlAdmin implements ActionListener {
 		public ModProf(AdministradorIG ventanaAdmin) {
 
 			this.ventAdmin=ventanaAdmin;
-		
+
 		}
-		
+
 		public void actionPerformed(ActionEvent e) {
 
-			try {
+			String Prof_Codigo = ventAdmin.codigo_field.getText();
+			String Prof_Nombre = ventAdmin.nombre_field.getText();
+			String Prof_Apellido = ventAdmin.apellido_field.getText();
+			String Prof_Edad = ventAdmin.edad_field.getText();
+			String Prof_Telef = ventAdmin.telef_field.getText();
+			String Prof_DNI = ventAdmin.DNI_field.getText();
+			String Prof_Curso = ventAdmin.Curso_field.getText();
 
-				Connection connection = ConexionAccess.getCon();
+			Profesor mod=new Profesor(Prof_Codigo, Prof_Nombre, Prof_Apellido, Prof_Edad, Prof_Telef, Prof_DNI, Prof_Curso);
 
-				String Prof_Codigo = ventAdmin.codigo_field.getText();
-				String Prof_Nombre = ventAdmin.nombre_field.getText();
-				String Prof_Apellido = ventAdmin.apellido_field.getText();
-				String Prof_Edad = ventAdmin.edad_field.getText();
-				String Prof_Telef = ventAdmin.telef_field.getText();
-				String Prof_DNI = ventAdmin.DNI_field.getText();
-				String Prof_Curso = ventAdmin.Curso_field.getText();
-
-				Administrador adm = new Administrador();
-				String sql=adm.modificarProfesor();
-				/*String sql = "UPDATE PROFESORES SET  Prof_Nombre=?, Prof_Apellidos=?, Prof_Edad=?, Prof_Telefono=?, Prof_DNI=?,Prof_Curso=? "
-		                    + "WHERE Prof_Codigo=?";*/
-
-				PreparedStatement statement = connection.prepareStatement(sql);
+			Administrador adm =new Administrador();
+			adm.modificarProfesor(mod);
 
 
-				statement.setString(1, Prof_Nombre);
-				statement.setString(2, Prof_Apellido);
-				statement.setString(3, Prof_Edad);
-				statement.setString(4, Prof_Telef);
-				statement.setString(5, Prof_DNI);
-				statement.setString(6, Prof_Curso);
-				statement.setString(7, Prof_Codigo);
-
-				statement.executeUpdate();
-
-			} catch (SQLException ex) {
-				// TODO Auto-generated catch block
-				ex.printStackTrace();
-			}
-			
 		}
 
 	}
@@ -346,37 +255,20 @@ public class ControlAdmin implements ActionListener {
 		public ModUser(AdministradorIG ventanaAdmin) {
 
 			this.ventAdmin=ventanaAdmin;
-		
+
 		}
-		
+
 		public void actionPerformed(ActionEvent e) {
 
-			try{
+			String usuario_Cod = ventAdmin.codigous_field.getText();
+			String usuario_pass = ventAdmin.contra_field.getText();
+			String usuario_tipo = ventAdmin.tipo_field.getText();
 
-				Connection connection = ConexionAccess.getCon();
+			Usuario user=new Usuario(usuario_Cod, usuario_pass, usuario_tipo);
 
-				String Usuario_Cod = ventAdmin.codigous_field.getText();
-				String Usuario_pass = ventAdmin.contra_field.getText();
-				String Usuario_tipo = ventAdmin.tipo_field.getText();
+			Administrador adm = new Administrador();
+			adm.modificarUsuario(user);
 
-				Administrador adm = new Administrador();
-				String sql=adm.modificarUsuario();
-				//String sql = "UPDATE USUARIOS SET  Usuario_pass=?, Usuario_tipo=? " + "WHERE Usuario_Cod=?";
-
-				PreparedStatement statement = connection.prepareStatement(sql);
-
-				statement.setString(1, Usuario_pass);
-				statement.setString(2, Usuario_tipo);
-				statement.setString(3, Usuario_Cod);
-
-
-				int n=statement.executeUpdate();
-
-			}catch (SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
-			}
-			
 		}
 
 	}
@@ -387,13 +279,13 @@ public class ControlAdmin implements ActionListener {
 	 *
 	 */
 	class MostrarAlum implements ActionListener{
-		
+
 		private AdministradorIG ventAdmin;
 
 		public MostrarAlum(AdministradorIG ventanaAdmin) {
 
 			this.ventAdmin=ventanaAdmin;
-		
+
 		}
 
 		public void actionPerformed(ActionEvent e) {
@@ -433,7 +325,7 @@ public class ControlAdmin implements ActionListener {
 				// TODO Auto-generated catch block
 				ex.printStackTrace();
 			}
-			
+
 		}
 
 	}
@@ -444,15 +336,15 @@ public class ControlAdmin implements ActionListener {
 	 *
 	 */
 	class MostrarAsig implements ActionListener{
-		
+
 		private AdministradorIG ventAdmin;
 
 		public MostrarAsig(AdministradorIG ventanaAdmin) {
 
 			this.ventAdmin=ventanaAdmin;
-		
+
 		}
-		
+
 		public void actionPerformed(ActionEvent e) {
 
 			try{
@@ -491,7 +383,7 @@ public class ControlAdmin implements ActionListener {
 				// TODO Auto-generated catch block
 				L.printStackTrace();
 			}
-			
+
 		}
 
 	}
@@ -508,11 +400,11 @@ public class ControlAdmin implements ActionListener {
 		public MostrarProf(AdministradorIG ventanaAdmin) {
 
 			this.ventAdmin=ventanaAdmin;
-		
+
 		}
-		
+
 		public void actionPerformed(ActionEvent e) {
-			
+
 			try{
 				Connection connection = ConexionAccess.getCon();
 
@@ -563,9 +455,9 @@ public class ControlAdmin implements ActionListener {
 		public MostrarUser(AdministradorIG ventanaAdmin) {
 
 			this.ventAdmin=ventanaAdmin;
-		
+
 		}
-		
+
 		public void actionPerformed(ActionEvent e) {
 
 			try{
@@ -603,7 +495,7 @@ public class ControlAdmin implements ActionListener {
 				// TODO Auto-generated catch block
 				L.printStackTrace();
 			}
-			
+
 		}
 
 	}
@@ -614,41 +506,26 @@ public class ControlAdmin implements ActionListener {
 	 *
 	 */
 	class NewUser implements ActionListener{
-		
+
 		private AdministradorIG ventAdmin;
 
 		public NewUser(AdministradorIG ventanaAdmin) {
 
 			this.ventAdmin=ventanaAdmin;
-		
+
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			try{
 
-				Connection connection = ConexionAccess.getCon();
+			String usuario_Cod = ventAdmin.codigous_field.getText();
+			String usuario_pass = ventAdmin.contra_field.getText();
+			String usuario_tipo = ventAdmin.tipo_field.getText();
 
-				String Usuario_Cod = ventAdmin.codigous_field.getText();
-				String Usuario_pass = ventAdmin.contra_field.getText();
-				String Usuario_tipo = ventAdmin.tipo_field.getText();
+			Usuario nuevo=new Usuario(usuario_Cod, usuario_pass, usuario_tipo);
 
-				Administrador adm = new Administrador();
-				String sql=adm.nuevoUsuario();
-				//String sql = "INSERT INTO USUARIOS (Usuario_Cod,Usuario_pass,Usuario_tipo) VALUES (?,?,?)";
+			Administrador adm = new Administrador();
+			adm.nuevoUsuario(nuevo);
 
-				PreparedStatement statement = connection.prepareStatement(sql);
-
-				statement.setString(1, Usuario_Cod);
-				statement.setString(2, Usuario_pass);
-				statement.setString(3, Usuario_tipo);
-
-
-				int n=statement.executeUpdate();
-
-			}catch (SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
-			}
 		}
 
 	}
@@ -665,44 +542,23 @@ public class ControlAdmin implements ActionListener {
 		public NewAlum(AdministradorIG ventanaAdmin) {
 
 			this.ventAdmin=ventanaAdmin;
-		
+
 		}
-		
+
 		public void actionPerformed(ActionEvent e) {
 
-			try{
-				
-				Connection connection = ConexionAccess.getCon();
+			String Alum_Cod = ventAdmin.codigo_field.getText();
+			String Alum_Nombre = ventAdmin.nombre_field.getText();
+			String Alum_Apellido = ventAdmin.apellido_field.getText();
+			String Alum_Edad = ventAdmin.edad_field.getText();
+			String Alum_Telef = ventAdmin.telef_field.getText();
+			String Alum_DNI = ventAdmin.DNI_field.getText();
+			String Alum_Curso = ventAdmin.Curso_field.getText();
 
-				String Alum_Cod = ventAdmin.codigo_field.getText();
-				String Alum_Nombre = ventAdmin.nombre_field.getText();
-				String Alum_Apellido = ventAdmin.apellido_field.getText();
-				String Alum_Edad = ventAdmin.edad_field.getText();
-				String Alum_Telef = ventAdmin.telef_field.getText();
-				String Alum_DNI = ventAdmin.DNI_field.getText();
-				String Alum_Curso = ventAdmin.Curso_field.getText();
+			Alumno nuevo=new Alumno(Alum_Cod, Alum_Nombre, Alum_Apellido, Alum_Edad, Alum_Telef, Alum_DNI, Alum_Curso);
 
-				Administrador adm = new Administrador();
-				String sql=adm.nuevoAlumno();
-				//String sql = "INSERT INTO ALUMNOS (Alum_Codigo,Alum_Nombre,Alum_Apellidos,Alum_Edad,Alum_Telefono,Alum_DNI,Alum_Curso) VALUES (?,?,?,?,?,?,?)";
-
-				PreparedStatement statement = connection.prepareStatement(sql);
-
-				statement.setString(1, Alum_Cod);
-				statement.setString(2, Alum_Nombre);
-				statement.setString(3, Alum_Apellido);
-				statement.setString(4, Alum_Edad);
-				statement.setString(5, Alum_Telef);
-				statement.setString(6, Alum_DNI);
-				statement.setString(7, Alum_Curso);
-
-				int n=statement.executeUpdate();
-
-			}catch (SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
-			}
-			
+			Administrador adm = new Administrador();
+			adm.nuevoAlumno(nuevo);
 		}
 
 	}
@@ -713,43 +569,26 @@ public class ControlAdmin implements ActionListener {
 	 *
 	 */
 	class NewAsig implements ActionListener{
-		
+
 		private AdministradorIG ventAdmin;
 
 		public NewAsig(AdministradorIG ventanaAdmin) {
 
 			this.ventAdmin=ventanaAdmin;
-		
+
 		}
 
 		public void actionPerformed(ActionEvent e) {
 
-			try{
+			String asig_Cod = ventAdmin.codigoasg_field.getText();
+			String asig_Nombre = ventAdmin.nombreasg_field.getText();
+			String codigo_Prof = ventAdmin.codigoprofasg_field.getText();
 
-				Connection connection = ConexionAccess.getCon();
+			Asignatura nueva=new Asignatura(asig_Cod,asig_Nombre,codigo_Prof);
 
-				String Asig_Cod = ventAdmin.codigoasg_field.getText();
-				String Asig_Nombre = ventAdmin.nombreasg_field.getText();
-				String Codigo_Prof = ventAdmin.codigoprofasg_field.getText();
+			Administrador adm = new Administrador();
+			adm.nuevaAsignatura(nueva);
 
-				Administrador adm = new Administrador();
-				String sql=adm.nuevaAsignatura();
-				//String sql = "INSERT INTO ASIGNATURAS (Asig_Codigo,Asig_Nombre,Prof_Asig_Cod) VALUES (?,?,?)";
-
-				PreparedStatement statement = connection.prepareStatement(sql);
-
-				statement.setString(1, Asig_Cod);
-				statement.setString(2, Asig_Nombre);
-				statement.setString(3, Codigo_Prof);
-
-
-				int n=statement.executeUpdate();
-
-			}catch (SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
-			}
-			
 		}
 
 	}
@@ -766,44 +605,24 @@ public class ControlAdmin implements ActionListener {
 		public NewProf(AdministradorIG ventanaAdmin) {
 
 			this.ventAdmin=ventanaAdmin;
-		
+
 		}
-		
+
 		public void actionPerformed(ActionEvent e) {
 
-			try{
+			Administrador adm = new Administrador();
 
-				Connection connection = ConexionAccess.getCon();
+			String Prof_Codigo = ventAdmin.codigo_field.getText();
+			String Prof_Nombre = ventAdmin.nombre_field.getText();
+			String Prof_Apellido = ventAdmin.apellido_field.getText();
+			String Prof_Edad = ventAdmin.edad_field.getText();
+			String Prof_Telef = ventAdmin.telef_field.getText();
+			String Prof_DNI = ventAdmin.DNI_field.getText();
+			String Prof_Curso = ventAdmin.Curso_field.getText();
 
-				String Prof_Codigo = ventAdmin.codigo_field.getText();
-				String Prof_Nombre = ventAdmin.nombre_field.getText();
-				String Prof_Apellido = ventAdmin.apellido_field.getText();
-				String Prof_Edad = ventAdmin.edad_field.getText();
-				String Prof_Telef = ventAdmin.telef_field.getText();
-				String Prof_DNI = ventAdmin.DNI_field.getText();
-				String Prof_Curso = ventAdmin.Curso_field.getText();
+			Profesor nuevo=new Profesor(Prof_Codigo, Prof_Nombre, Prof_Apellido, Prof_Edad, Prof_Telef, Prof_DNI, Prof_Curso);
+			adm.nuevoProfesor(nuevo);
 
-				Administrador adm = new Administrador();
-				String sql=adm.nuevoProfesor();
-				//String sql = "INSERT INTO PROFESORES (Prof_Codigo,Prof_Nombre,Prof_Apellidos,Prof_Edad,Prof_Telefono,Prof_DNI,Prof_Curso) VALUES (?,?,?,?,?,?,?)";
-
-				PreparedStatement statement = connection.prepareStatement(sql);
-
-				statement.setString(1, Prof_Codigo);
-				statement.setString(2, Prof_Nombre);
-				statement.setString(3, Prof_Apellido);
-				statement.setString(4, Prof_Edad);
-				statement.setString(5, Prof_Telef);
-				statement.setString(6, Prof_DNI);
-				statement.setString(7, Prof_Curso);
-
-				int n=statement.executeUpdate();
-
-			}catch (SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
-			}
-			
 		}
 
 	}
