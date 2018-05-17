@@ -1,8 +1,11 @@
 package database;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class ProfesorDB implements OperacionesDB{
 
-	/*@Override
+	@Override
 	public void aniadir(PreparedStatement nuevo) {
 		// TODO Auto-generated method stub
 		
@@ -31,24 +34,6 @@ public class ProfesorDB implements OperacionesDB{
 
 	@Override
 	public void eliminar(PreparedStatement drop) {
-		// TODO Auto-generated method stub
-		
-	}*/
-
-	@Override
-	public void aniadir(Object nuevo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void modificar(Object mod) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void eliminar(Object drop) {
 		// TODO Auto-generated method stub
 		
 	}

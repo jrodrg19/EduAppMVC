@@ -1,21 +1,23 @@
 package database;
 
-class AlumnoDB implements OperacionesDB{
+import java.sql.PreparedStatement;
 
+public class AlumnoDB implements OperacionesDB{
+	
 	@Override
-	public void aniadir(Object nuevo) {
+	public void aniadir(PreparedStatement nuevo) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void modificar(Object mod) {
+	public void modificar(PreparedStatement mod) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void eliminar(Object drop) {
+	public void eliminar(PreparedStatement drop) {
 		// TODO Auto-generated method stub
 		
 	}

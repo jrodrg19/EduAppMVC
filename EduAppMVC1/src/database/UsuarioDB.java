@@ -6,6 +6,24 @@ import java.sql.SQLException;
 
 public class UsuarioDB implements OperacionesDB{
 
+	@Override
+	public void aniadir(PreparedStatement nuevo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void modificar(PreparedStatement mod) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eliminar(PreparedStatement drop) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public ResultSet obtenerUsuario(PreparedStatement statement) {
 		
 		ResultSet user=null;
@@ -18,24 +36,6 @@ public class UsuarioDB implements OperacionesDB{
 		}
 		
 		return user;
-		
-	}
-
-	@Override
-	public void aniadir(Object nuevo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void modificar(Object mod) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void eliminar(Object drop) {
-		// TODO Auto-generated method stub
 		
 	}
 
