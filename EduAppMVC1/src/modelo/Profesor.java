@@ -1,9 +1,11 @@
 package modelo;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class Profesor {
-	
+
 	private String prof_Cod;
 	private	String prof_Nombre;
 	private String prof_Apellidos;
@@ -12,13 +14,13 @@ public class Profesor {
 	private String prof_DNI;
 	private String prof_Curso;
 	private Connection connection;
-	
+
 	public Profesor() {
 
 	}
-	
+
 	public Profesor(String cod, String nombre, String apell, String edad, String tlf, String dni, String curso){
-				
+
 		this.setProf_Cod(cod);
 		this.setProf_Nombre(nombre);
 		this.setProf_Apellidos(apell);
@@ -26,9 +28,9 @@ public class Profesor {
 		this.setProf_Telefono(tlf);
 		this.setProf_DNI(dni);
 		this.setProf_Curso(curso);
-		
+
 	}
-	
+
 	public String getProf_Cod() {
 		return prof_Cod;
 	}
@@ -71,41 +73,94 @@ public class Profesor {
 	public void setProf_Curso(String prof_Curso) {
 		this.prof_Curso = prof_Curso;
 	}
-	
-	
-	public String nuevaNota(){
-		
+
+
+	public void nuevaNota(Nota nueva){
+
 		String sql = "INSERT INTO NOTAS (Nota_Codigo,Nota_Alum_Codigo,Nota_Asig_Codigo,Nota_Prof_Codigo,Nota_Trim1,Nota_Trim2,Nota_Trim3,Nota_Calif) VALUES (?,?,?,?,?,?,?,?)";
-		return sql;
-		
+
+		try {
+
+			PreparedStatement statement = connection.prepareStatement(sql);
+
+			statement.setString(1, nueva.getNota_Cod());
+			statement.setString(2, nueva.getNota_Alum_Cod());
+			statement.setString(3, nueva.getNota_Asig_Cod());
+			statement.setString(4, nueva.getNota_Prof_Cod());
+			statement.setString(5, nueva.getNota_Trim1());
+			statement.setString(6, nueva.getNota_Trim2());
+			statement.setString(7, nueva.getNota_Trim3());
+			statement.setString(8, nueva.getNota_Calif());
+
+			int n=statement.executeUpdate();
+
+		}catch (SQLException L) {
+			// TODO Auto-generated catch block
+			L.printStackTrace();
+
+		}
 	}
-	
-	
-	public String modificarNota(){
-		
-	String sql = "UPDATE NOTAS SET  Nota_Alum_Codigo=?, Nota_Asig_Codigo=?, Nota_Prof_Codigo=?, Nota_Trim1=?, Nota_Trim2=?,Nota_Trim3=?,Nota_Calif=? "
-            + "WHERE Nota_Codigo=?";
-	return sql;
-	
+
+
+	public void modificarNota(Nota mod){
+
+		String sql = "UPDATE NOTAS SET  Nota_Alum_Codigo=?, Nota_Asig_Codigo=?, Nota_Prof_Codigo=?, Nota_Trim1=?, Nota_Trim2=?,Nota_Trim3=?,Nota_Calif=? "
+				+ "WHERE Nota_Codigo=?";
+
+		try {
+
+			PreparedStatement statement = connection.prepareStatement(sql);
+
+
+
+			statement.setString(1, mod.getNota_Alum_Cod());
+			statement.setString(2, mod.getNota_Asig_Cod());
+			statement.setString(3, mod.getNota_Prof_Cod());
+			statement.setString(4, mod.getNota_Trim1());
+			statement.setString(5, mod.getNota_Trim2());
+			statement.setString(6, mod.getNota_Trim3());
+			statement.setString(7, mod.buscarCalificacion());
+			statement.setString(8, mod.getNota_Cod());
+
+			statement.executeUpdate();
+
+		} catch (SQLException i) {
+			// TODO Auto-generated catch block
+			i.printStackTrace();
+		}
+
 	}
-	
-	public String eliminarNota(){
-		
+
+	public void eliminarNota(String nota_Cod){
+
 		String sql = "DELETE FROM  NOTAS WHERE Nota_Codigo=?";
-		return sql;
+
+		try {		
+
+			PreparedStatement statement = connection.prepareStatement(sql);
+
+			statement.setString(1, nota_Cod);
+
+			statement.executeUpdate();
+
+		}catch (SQLException L) {
+			// TODO Auto-generated catch block
+			L.printStackTrace();
+		}			
+
 	}
-	
-	
-	
+
+
+
 	public String mostrarProfesor(){
-		
+
 		String sql = "select * FROM PROFESORES";			
 		return sql;
-		
+
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }

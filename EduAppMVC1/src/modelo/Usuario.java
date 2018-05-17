@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import conexion.ConexionAccess;
-import database.UsuarioDB;
 
 public class Usuario {
 
@@ -49,11 +48,11 @@ public class Usuario {
 
 	public ResultSet seleccionarUsuario(){
 
-		UsuarioDB usuarioDB=new UsuarioDB();
 		
 		String sql = "select * from USUARIOS where (Usuario_Cod = ? and Usuario_pass = ? and Usuario_tipo = ?); ";
 		
-		PreparedStatement statement=null;;
+		PreparedStatement statement=null;
+		ResultSet set=null;
 		try {
 			statement = connection.prepareStatement(sql);
 			
@@ -61,13 +60,12 @@ public class Usuario {
 			statement.setString(2, Usuario_pass);
 			statement.setString(3, Usuario_tipo);
 			
-			
+			set=statement.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		ResultSet set=usuarioDB.obtenerUsuario(statement);
+	
 		
 		return set;
 

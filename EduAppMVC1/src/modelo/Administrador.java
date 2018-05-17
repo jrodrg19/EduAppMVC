@@ -5,10 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import conexion.ConexionAccess;
-import database.AlumnoDB;
-import database.AsignaturaDB;
-import database.ProfesorDB;
-import database.UsuarioDB;
 
 public class Administrador {
 
@@ -91,9 +87,6 @@ public class Administrador {
 			statement.setString(6, nuevo.getProf_DNI());
 			statement.setString(7, nuevo.getProf_Curso());
 
-			ProfesorDB profdb=new ProfesorDB();
-			profdb.aniadir(statement);
-
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -120,8 +113,7 @@ public class Administrador {
 			statement.setString(6, nuevo.getAlum_DNI());
 			statement.setString(7, nuevo.getAlum_Curso());
 
-			AlumnoDB alumDB=new AlumnoDB();
-			alumDB.aniadir(statement);
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -142,8 +134,7 @@ public class Administrador {
 			statement.setString(2, user.getUsuario_pass());
 			statement.setString(3, user.getUsuario_tipo());
 
-			UsuarioDB userDB=new UsuarioDB();
-			userDB.modificar(statement);
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -169,8 +160,7 @@ public class Administrador {
 			statement.setString(6, modificado.getAlum_Curso());
 			statement.setString(7, modificado.getAlum_Cod());
 
-			AlumnoDB alumDB=new AlumnoDB();
-			alumDB.modificar(statement);
+			statement.executeUpdate();
 		
 		}catch (SQLException L) {
 			// TODO Auto-generated catch block
@@ -197,8 +187,7 @@ public class Administrador {
 			statement.setString(6, mod.getProf_DNI());
 			statement.setString(7, mod.getProf_Curso());
 
-			ProfesorDB modDB=new ProfesorDB();
-			modDB.modificar(statement);
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -218,9 +207,7 @@ public class Administrador {
 
 			statement.setString(1, usuario_Cod);
 
-			UsuarioDB userDB=new UsuarioDB();
-
-			userDB.eliminar(statement);
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -241,8 +228,7 @@ public class Administrador {
 			statement.setString(2, user.getUsuario_tipo());
 			statement.setString(3, user.getUsuario_Cod());
 
-			UsuarioDB userDB=new UsuarioDB();
-			userDB.modificar(statement);
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -263,9 +249,7 @@ public class Administrador {
 			statement.setString(2, asig.getAsig_Nombre());
 			statement.setString(3, asig.getProf_Asig_Cod());
 
-			AsignaturaDB asigDB=new AsignaturaDB();
-
-			asigDB.aniadir(statement);
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -283,8 +267,7 @@ public class Administrador {
 
 			statement.setString(1, asignatura_Cod);
 
-			AsignaturaDB asigDB=new AsignaturaDB();
-			asigDB.eliminar(statement);
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -304,9 +287,8 @@ public class Administrador {
 			statement.setString(1, mod.getAsig_Nombre());
 			statement.setString(2, mod.getProf_Asig_Cod());
 
-			AsignaturaDB asigBD=new AsignaturaDB();
-			asigBD.modificar(statement);
-
+			statement.executeUpdate();
+			
 		}catch (SQLException L) {
 			// TODO Auto-generated catch block
 			L.printStackTrace();
@@ -318,6 +300,7 @@ public class Administrador {
 
 		String sql = "SELECT * FROM ALUMNOS WHERE Alum_Curso = ?";
 		return sql;
+		
 	}
 
 }

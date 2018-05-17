@@ -31,7 +31,7 @@ public class ControlProfesor implements ActionListener{
 		this.ventanaProf.btnMostrarAlumno.addActionListener(new BtnMostrarAlum(ventanaProf));
 		this.ventanaProf.btnMostrarProfesor.addActionListener(new BtnMostrarProf(ventanaProf));
 		this.ventanaProf.btnNuevaNota.addActionListener(new BtnNuevaNota(ventanaProf));
-		
+
 	}
 
 	/**
@@ -40,7 +40,7 @@ public class ControlProfesor implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 
 		try{
-			
+
 			Connection connection=ConexionAccess.getCon();
 
 			String  Alum_Codigo = ventanaProf.TextCodigoAlum.getText();
@@ -83,7 +83,7 @@ public class ControlProfesor implements ActionListener{
 			// TODO Auto-generated catch block
 			L.printStackTrace();
 		}
-		
+
 	}
 
 	/**
@@ -103,27 +103,11 @@ public class ControlProfesor implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
 
-			try{
+			String nota_Cod = ventanaProf.codigo_field.getText();
 
-				Connection connection=ConexionAccess.getCon();
+			Profesor prof = new Profesor();
+			prof.eliminarNota(nota_Cod);
 
-				String Nota_Cod = ventanaProf.codigo_field.getText();
-
-				//String sql = "DELETE FROM  NOTAS WHERE Nota_Codigo=?";
-				Profesor prof = new Profesor();
-				String sql=prof.eliminarNota();
-
-				PreparedStatement statement = connection.prepareStatement(sql);
-
-				statement.setString(1, Nota_Cod);
-
-				int n=statement.executeUpdate();
-
-			}catch (SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
-			}			
-			
 		}
 
 	}
@@ -145,48 +129,25 @@ public class ControlProfesor implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
 
-			try {
-			    
-				Connection connection = ConexionAccess.getCon();
-		        
-				String Nota_Codigo = ventanaProf.codigo_field.getText();
-				String Nota_Alum_Codigo = ventanaProf.alumno_field.getText();
-				String Nota_Asig_Codigo = ventanaProf.asignatura_field.getText();
-				String Nota_Prof_Codigo = ventanaProf.profesor_field.getText();
-				String Nota_Trim1 = ventanaProf.nota1_field.getText();
-				String Nota_Trim2 = ventanaProf.nota2_field.getText();
-				String Nota_Trim3 = ventanaProf.nota3_field.getText();
-				String Nota_Calif = ventanaProf.nota4_field.getText();
-				
-				Profesor prof = new Profesor();
-				String sql=prof.modificarNota();
-		        /*String sql = "UPDATE NOTAS SET  Nota_Alum_Codigo=?, Nota_Asig_Codigo=?, Nota_Prof_Codigo=?, Nota_Trim1=?, Nota_Trim2=?,Nota_Trim3=?,Nota_Calif=? "
-		                    + "WHERE Nota_Codigo=?";*/
-		        
-		        PreparedStatement statement = connection.prepareStatement(sql);
-		        
-				
-				
-				statement.setString(1, Nota_Alum_Codigo);
-				statement.setString(2, Nota_Asig_Codigo);
-				statement.setString(3, Nota_Prof_Codigo);
-				statement.setString(4, Nota_Trim1);
-				statement.setString(5, Nota_Trim2);
-				statement.setString(6, Nota_Trim3);
-				statement.setString(7, Nota_Calif);
-				statement.setString(8, Nota_Codigo);
-				
-		        statement.executeUpdate();
-		       
-			} catch (SQLException i) {
-				// TODO Auto-generated catch block
-				i.printStackTrace();
-			}
-			
+
+			String nota_Codigo = ventanaProf.codigo_field.getText();
+			String nota_Alum_Codigo = ventanaProf.alumno_field.getText();
+			String nota_Asig_Codigo = ventanaProf.asignatura_field.getText();
+			String nota_Prof_Codigo = ventanaProf.profesor_field.getText();
+			String nota_Trim1 = ventanaProf.nota1_field.getText();
+			String nota_Trim2 = ventanaProf.nota2_field.getText();
+			String nota_Trim3 = ventanaProf.nota3_field.getText();
+			String nota_Calif = ventanaProf.nota4_field.getText();
+
+			Nota mod=new Nota(nota_Codigo, nota_Alum_Codigo, nota_Asig_Codigo, nota_Prof_Codigo, "", nota_Trim1, nota_Trim2, nota_Trim3, nota_Calif);
+
+			Profesor prof = new Profesor();
+			prof.modificarNota(mod);
+
 		}
 
 	}
-	
+
 	/**
 	 * 
 	 * @author Javier
@@ -240,7 +201,7 @@ public class ControlProfesor implements ActionListener{
 				L.printStackTrace();
 			}
 
-			
+
 		}
 
 	}
@@ -297,11 +258,11 @@ public class ControlProfesor implements ActionListener{
 				// TODO Auto-generated catch block
 				l.printStackTrace();
 			}
-			
+
 		}
 
 	}
-	
+
 	/**
 	 * 
 	 * @author Javier
@@ -322,7 +283,7 @@ public class ControlProfesor implements ActionListener{
 			try{
 
 				Connection connection = ConexionAccess.getCon();
-				
+
 				Statement stm = connection.createStatement();
 				Profesor prof = new Profesor();
 				String sql=prof.mostrarProfesor();
@@ -354,11 +315,11 @@ public class ControlProfesor implements ActionListener{
 				// TODO Auto-generated catch block
 				L.printStackTrace();
 			}
-			
+
 		}
 
 	}
-	
+
 	/**
 	 * 
 	 * @author Javier
@@ -376,43 +337,22 @@ public class ControlProfesor implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
 
-			try{
-				
-				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-				Connection connection = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\usuario\\Desktop\\COLEGIO.accdb");
-				
-				String Nota_Codigo = ventanaProf.codigo_field.getText();
-				String Nota_Alum_Codigo = ventanaProf.alumno_field.getText();
-				String Nota_Asig_Codigo = ventanaProf.asignatura_field.getText();
-				String Nota_Prof_Codigo = ventanaProf.profesor_field.getText();
-				String Nota_Trim1 = ventanaProf.nota1_field.getText();
-				String Nota_Trim2 = ventanaProf.nota2_field.getText();
-				String Nota_Trim3 = ventanaProf.nota3_field.getText();
-				String Nota_Calif = ventanaProf.nota4_field.getText();
-				
-				//String sql = "INSERT INTO NOTAS (Nota_Codigo,Nota_Alum_Codigo,Nota_Asig_Codigo,Nota_Prof_Codigo,Nota_Trim1,Nota_Trim2,Nota_Trim3,Nota_Calif) VALUES (?,?,?,?,?,?,?,?)";
-				Profesor prof = new Profesor();
-				String sql=prof.nuevaNota();
-				PreparedStatement statement = connection.prepareStatement(sql);
-				
-				statement.setString(1, Nota_Codigo);
-				statement.setString(2, Nota_Alum_Codigo);
-				statement.setString(3, Nota_Asig_Codigo);
-				statement.setString(4, Nota_Prof_Codigo);
-				statement.setString(5, Nota_Trim1);
-				statement.setString(6, Nota_Trim2);
-				statement.setString(7, Nota_Trim3);
-				statement.setString(8, Nota_Calif);
-				
-				int n=statement.executeUpdate();
-				
-				}catch (ClassNotFoundException | SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
-			}
-			
+			String nota_Codigo = ventanaProf.codigo_field.getText();
+			String nota_Alum_Codigo = ventanaProf.alumno_field.getText();
+			String nota_Asig_Codigo = ventanaProf.asignatura_field.getText();
+			String nota_Prof_Codigo = ventanaProf.profesor_field.getText();
+			String nota_Trim1 = ventanaProf.nota1_field.getText();
+			String nota_Trim2 = ventanaProf.nota2_field.getText();
+			String nota_Trim3 = ventanaProf.nota3_field.getText();
+			String nota_Calif = ventanaProf.nota4_field.getText();
+
+			Nota nueva=new Nota(nota_Codigo, nota_Alum_Codigo, nota_Asig_Codigo, nota_Prof_Codigo, "", nota_Trim1, nota_Trim2, nota_Trim3, nota_Calif);
+
+			Profesor prof = new Profesor();
+			prof.nuevaNota(nueva);			
+
 		}
 
 	}
-	
+
 }

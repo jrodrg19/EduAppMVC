@@ -1,23 +1,21 @@
 package database;
 
-import java.sql.PreparedStatement;
-
 public class AsignaturaDB implements OperacionesDB{
 
 	@Override
-	public void aniadir(PreparedStatement nuevo) {
+	public void aniadir(Object nuevo) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void modificar(PreparedStatement mod) {
+	public void modificar(Object mod) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void eliminar(PreparedStatement drop) {
+	public void eliminar(Object drop) {
 		// TODO Auto-generated method stub
 		
 	}

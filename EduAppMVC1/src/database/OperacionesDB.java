@@ -2,10 +2,10 @@ package database;
 
 public interface OperacionesDB {
 
-	public abstract void aniadir(java.sql.PreparedStatement nuevo);
+	public abstract void aniadir(Object nuevo);
 	
-	public abstract void modificar(java.sql.PreparedStatement mod);
+	public abstract void modificar(Object mod);
 	
-	public abstract void eliminar(java.sql.PreparedStatement drop);
+	public abstract void eliminar(Object drop);
 		
 }
