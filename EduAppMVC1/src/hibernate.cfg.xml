@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory name="Colegio">
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/colegio</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+		<property name="hibernate.show_sql">true</property>
+
+		<mapping class="databaseModel.Alumnos" package="databaseModel"
+			resource="/databaseModel.Alumnos.hbm.xml" />
+		<mapping class="databaseModel.Asignaturas"
+			package="databaseModel" resource="/databaseModel.Asignaturas.hbm.xml" />
+		<mapping class="databaseModel.Notas" package="databaseModel"
+			resource="/databaseModel.Notas.hbm.xml" />
+		<mapping class="databaseModel.Usuarios"
+			package="databaseModel" resource="/databaseModel.Usuarios.hbm.xml" />
+		<mapping class="databaseModel.Profesores"
+			package="databaseModel" resource="/databaseModel.Profesores.hbm.xml" />
+		<mapping class="databaseModel.Administradores"
+			package="databaseModel"
+			resource="/databaseModel.Administradores.hbm.xml" />
+		<mapping class="databaseModel.AdministradoresId"
+			package="databaseModel"
+			resource="/databaseModel.AdministradoresId.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>

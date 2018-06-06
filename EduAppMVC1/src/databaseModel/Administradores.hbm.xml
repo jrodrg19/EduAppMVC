@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-jun-2018 11:37:45 by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="databaseModel.Administradores" table="administradores" catalog="colegio" optimistic-lock="version">
+        <composite-id name="id" class="databaseModel.AdministradoresId">
+            <key-property name="adminCodigo" type="string">
+                <column name="Admin_Codigo" length="10" />
+            </key-property>
+            <key-property name="adminNombre" type="string">
+                <column name="Admin_Nombre" length="10" />
+            </key-property>
+            <key-property name="adminApellidos" type="string">
+                <column name="Admin_Apellidos" length="10" />
+            </key-property>
+            <key-property name="adminEdad" type="string">
+                <column name="Admin_Edad" length="2" />
+            </key-property>
+            <key-property name="adminTelefono" type="string">
+                <column name="Admin_Telefono" length="9" />
+            </key-property>
+            <key-property name="adminDni" type="string">
+                <column name="Admin_DNI" length="9" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

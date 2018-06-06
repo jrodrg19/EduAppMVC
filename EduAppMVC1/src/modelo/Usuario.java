@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import conexion.ConexionAccess;
-
 public class Usuario {
 
 	private String Usuario_Cod;
@@ -19,7 +17,7 @@ public class Usuario {
 
 	public Usuario(String cod,String pass,String tipo){
 		
-		connection = ConexionAccess.getCon();
+		connection = HibernateConection.getCon();
 		
 		this.setUsuario_Cod(cod);
 		this.setUsuario_pass(pass);

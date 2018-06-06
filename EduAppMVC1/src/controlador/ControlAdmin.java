@@ -12,7 +12,6 @@ import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
 
 import modelo.*;
-import conexion.ConexionAccess;
 import vista.AdministradorIG;
 
 public class ControlAdmin implements ActionListener {
@@ -100,7 +99,7 @@ public class ControlAdmin implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
 			try{
-				Connection connection = ConexionAccess.getCon();
+				Connection connection = HibernateConection.getCon();
 
 				String  Curso = ventAdmin.TextCurso.getText();
 
@@ -292,7 +291,7 @@ public class ControlAdmin implements ActionListener {
 
 			try{
 
-				Connection connection = ConexionAccess.getCon();
+				Connection connection = HibernateConection.getCon();
 
 				Statement stm = connection.createStatement();
 				Alumno alu = new Alumno();
@@ -349,7 +348,7 @@ public class ControlAdmin implements ActionListener {
 
 			try{
 
-				Connection connection = ConexionAccess.getCon();
+				Connection connection = HibernateConection.getCon();
 
 
 				Statement stm = connection.createStatement();
@@ -406,7 +405,7 @@ public class ControlAdmin implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
 			try{
-				Connection connection = ConexionAccess.getCon();
+				Connection connection = HibernateConection.getCon();
 
 				Statement stm = connection.createStatement();
 				Profesor prof = new Profesor();
@@ -462,7 +461,7 @@ public class ControlAdmin implements ActionListener {
 
 			try{
 
-				Connection connection = ConexionAccess.getCon();
+				Connection connection = HibernateConection.getCon();
 
 				Statement stm = connection.createStatement();
 				Usuario us = new Usuario();

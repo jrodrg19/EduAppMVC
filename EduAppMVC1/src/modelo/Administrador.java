@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import conexion.ConexionAccess;
-
 public class Administrador {
 
 	private String Admin_Cod;
@@ -22,7 +20,6 @@ public class Administrador {
 
 	public Administrador(String cod, String nom, String app, String edad, String tlf, String dni) {
 
-		connection=ConexionAccess.getCon();
 		this.setAdmin_Apellidos(app);
 		this.setAdmin_Cod(cod);
 		this.setAdmin_DNI(dni);

@@ -15,7 +15,6 @@ import javax.swing.table.DefaultTableModel;
 
 import org.omg.IOP.CodecFactoryOperations;
 
-import conexion.ConexionAccess;
 import modelo.*;
 import vista.AlumnoIG;
 
@@ -49,7 +48,7 @@ public class ControlAlumno implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		try{
-			Connection connection = ConexionAccess.getCon();
+			Connection connection = HibernateConection.getCon();
 			
 			String  Nota_Alum_Codigo = ventanaAlum.codigo_field.getText();
 			
@@ -109,7 +108,7 @@ public class ControlAlumno implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			try{
 				
-			Connection connection = ConexionAccess.getCon();
+			Connection connection = HibernateConection.getCon();
 			String  Nota_Alum_Codigo = ventanaAl.codigo_field.getText();
 			
 			//String sql = "SELECT * FROM ALUMNOS WHERE Alum_Codigo = ?";
@@ -170,7 +169,7 @@ public class ControlAlumno implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			try{
 				
-				Connection connection=ConexionAccess.getCon();
+				Connection connection=HibernateConection.getCon();
 				
 				Statement stm = connection.createStatement();
 				Alumno alu = new Alumno();
@@ -226,7 +225,7 @@ public class ControlAlumno implements ActionListener{
 			
 			try{
 
-				Connection connection = ConexionAccess.getCon();
+				Connection connection = HibernateConection.getCon();
 
 				Statement stm = connection.createStatement();
 				//String sql = "select * FROM ASIGNATURAS";
@@ -282,7 +281,7 @@ public class ControlAlumno implements ActionListener{
 
 			try{
 
-				Connection connection = ConexionAccess.getCon();
+				Connection connection = HibernateConection.getCon();
 
 				Statement stm = connection.createStatement();
 				Nota nota = new Nota();
@@ -338,7 +337,7 @@ public class ControlAlumno implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
 			try{
 
-				Connection connection = ConexionAccess.getCon();
+				Connection connection = HibernateConection.getCon();
 
 				Statement stm = connection.createStatement();
 				Profesor prof = new Profesor();

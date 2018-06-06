@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-jun-2018 11:37:45 by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="databaseModel.Profesores" table="profesores" catalog="colegio" optimistic-lock="version">
+        <id name="profCodigo" type="string">
+            <column name="Prof_Codigo" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="profNombre" type="string">
+            <column name="Prof_Nombre" length="10" not-null="true" />
+        </property>
+        <property name="profApellidos" type="string">
+            <column name="Prof_Apellidos" length="10" not-null="true" />
+        </property>
+        <property name="profEdad" type="string">
+            <column name="Prof_Edad" length="2" not-null="true" />
+        </property>
+        <property name="profTelefono" type="string">
+            <column name="Prof_Telefono" length="9" not-null="true" />
+        </property>
+        <property name="profDni" type="string">
+            <column name="Prof_DNI" length="9" not-null="true" />
+        </property>
+        <property name="profCurso" type="string">
+            <column name="Prof_Curso" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

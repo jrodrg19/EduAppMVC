@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-jun-2018 11:37:45 by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="databaseModel.Notas" table="notas" catalog="colegio" optimistic-lock="version">
+        <id name="notaCodigo" type="string">
+            <column name="Nota_Codigo" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="notaAlumCodigo" type="string">
+            <column name="Nota_Alum_Codigo" length="10" not-null="true" />
+        </property>
+        <property name="notaAsigCodigo" type="string">
+            <column name="Nota_Asig_Codigo" length="10" not-null="true" />
+        </property>
+        <property name="notaProfCodigo" type="string">
+            <column name="Nota_Prof_Codigo" length="10" not-null="true" />
+        </property>
+        <property name="notaTrim1" type="string">
+            <column name="Nota_Trim1" length="3" not-null="true" />
+        </property>
+        <property name="notaTrim2" type="string">
+            <column name="Nota_Trim2" length="3" not-null="true" />
+        </property>
+        <property name="notaTrim3" type="string">
+            <column name="Nota_Trim3" length="3" not-null="true" />
+        </property>
+        <property name="notaCalif" type="string">
+            <column name="Nota_Calif" length="3" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

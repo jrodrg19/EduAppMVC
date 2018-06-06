@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-jun-2018 11:37:45 by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="databaseModel.Asignaturas" table="asignaturas" catalog="colegio" optimistic-lock="version">
+        <id name="asigCodigo" type="string">
+            <column name="Asig_Codigo" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="asigNombre" type="string">
+            <column name="Asig_Nombre" length="10" not-null="true" />
+        </property>
+        <property name="profAsigCod" type="string">
+            <column name="Prof_Asig_Cod" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
