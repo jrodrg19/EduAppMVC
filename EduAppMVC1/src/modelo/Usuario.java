@@ -17,6 +17,8 @@ public class Usuario {
 
 	public Usuario(String cod,String pass,String tipo){
 				
+		Conecta nueva=new Conecta();
+		connection=nueva.getConexion();
 		this.setUsuario_Cod(cod);
 		this.setUsuario_pass(pass);
 		this.setUsuario_tipo(tipo);
@@ -44,7 +46,6 @@ public class Usuario {
 
 	public ResultSet seleccionarUsuario(){
 
-		
 		String sql = "select * from USUARIOS where (Usuario_Cod = ? and Usuario_pass = ? and Usuario_tipo = ?); ";
 		
 		PreparedStatement statement=null;
