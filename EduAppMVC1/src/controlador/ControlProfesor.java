@@ -9,9 +9,13 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 
+import databaseModel.Alumnos;
+import databaseModel.Notas;
+import databaseModel.Profesores;
 import modelo.*;
 import vista.ProfesorIG;
 
@@ -38,50 +42,10 @@ public class ControlProfesor implements ActionListener{
 	 */
 	public void actionPerformed(ActionEvent e) {
 
-		try{
-
-			Connection connection=HibernateConection.getCon();
-
 			String  Alum_Codigo = ventanaProf.TextCodigoAlum.getText();
 			String  Prof_Codigo = ventanaProf.TextCodigoProfesor.getText();
 
-			Nota nota = new Nota();
-			String sql=nota.buscarNota();
-
-			//String sql = "SELECT * FROM NOTAS WHERE Nota_Alum_Codigo = ? AND Nota_Prof_Codigo = ?  ";
-			PreparedStatement statement = connection.prepareStatement(sql);
-
-
-			statement.setString(1, Alum_Codigo);
-			statement.setString(2, Prof_Codigo);
-
-			ResultSet rst =statement.executeQuery( );
-			ResultSetMetaData rsMD = rst.getMetaData();
-			int numeroColumnas = rsMD.getColumnCount();
-
-			DefaultTableModel modelo = new DefaultTableModel();
-			ventanaProf.table.setModel(modelo);
-
-			for ( int x=1 ; x<= numeroColumnas ; x++){
-				modelo.addColumn(rsMD.getColumnLabel(x));
-
-			}
-
-			while (rst.next()){
-				Object [] fila = new Object [numeroColumnas];
-
-				for (int i = 0 ; i < numeroColumnas ; i++){
-					fila[i]=rst.getObject(i+1);
-
-				}
-
-				modelo.addRow(fila);
-
-			}
-		}catch (SQLException L) {
-			// TODO Auto-generated catch block
-			L.printStackTrace();
-		}
+			
 
 	}
 
@@ -164,42 +128,11 @@ public class ControlProfesor implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
 
-			try{
+			ArrayList<Notas> profesores=new ArrayList<>();
+			
+			Profesor prof = new Profesor();
 
-				Connection connection= HibernateConection.getCon();
-
-				Statement stm = connection.createStatement();
-				Nota nota = new Nota();
-				String sql=nota.mostrarNota();
-				//String sql = "select * FROM NOTAS";
-				ResultSet rst = stm.executeQuery(sql);
-				ResultSetMetaData rsMD = rst.getMetaData();
-				int numeroColumnas = rsMD.getColumnCount();
-
-				DefaultTableModel modelo = new DefaultTableModel();
-				ventanaProf.table.setModel(modelo);
-
-				for ( int x=1 ; x<= numeroColumnas ; x++){
-					modelo.addColumn(rsMD.getColumnLabel(x));
-
-				}
-
-				while (rst.next()){
-					Object [] fila = new Object [numeroColumnas];
-
-					for (int i = 0 ; i < numeroColumnas ; i++){
-						fila[i]=rst.getObject(i+1);
-
-					}
-
-					modelo.addRow(fila);
-
-				}
-			}catch (SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
-			}
-
+			profesores=prof.mostrarNotas();
 
 		}
 
@@ -222,41 +155,11 @@ public class ControlProfesor implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
 
-			try{
+			ArrayList<Alumnos> profesores=new ArrayList<>();
+			
+			Profesor prof = new Profesor();
 
-				Connection connection=HibernateConection.getCon();
-
-				Statement stm = connection.createStatement();
-				Alumno alum = new Alumno();
-				String sql=alum.mostrarAlumnos();
-				//String sql = "select * FROM ALUMNOS";
-				ResultSet rst = stm.executeQuery(sql);
-				ResultSetMetaData rsMD = rst.getMetaData();
-				int numeroColumnas = rsMD.getColumnCount();
-
-				DefaultTableModel modelo = new DefaultTableModel();
-				ventanaProf.table.setModel(modelo);
-
-				for ( int x=1 ; x<= numeroColumnas ; x++){
-					modelo.addColumn(rsMD.getColumnLabel(x));
-
-				}
-
-				while (rst.next()){
-					Object [] fila = new Object [numeroColumnas];
-
-					for (int i = 0 ; i < numeroColumnas ; i++){
-						fila[i]=rst.getObject(i+1);
-
-					}
-
-					modelo.addRow(fila);
-
-				}
-			}catch (SQLException l) {
-				// TODO Auto-generated catch block
-				l.printStackTrace();
-			}
+			profesores=prof.mostrarAlumnos();
 
 		}
 
@@ -279,41 +182,11 @@ public class ControlProfesor implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
 
-			try{
+			ArrayList<Profesores> profesores=new ArrayList<>();
+			
+			Profesor prof = new Profesor();
 
-				Connection connection = HibernateConection.getCon();
-
-				Statement stm = connection.createStatement();
-				Profesor prof = new Profesor();
-				String sql=prof.mostrarProfesor();
-				//String sql = "select * FROM PROFESORES";
-				ResultSet rst = stm.executeQuery(sql);
-				ResultSetMetaData rsMD = rst.getMetaData();
-				int numeroColumnas = rsMD.getColumnCount();
-
-				DefaultTableModel modelo = new DefaultTableModel();
-				ventanaProf.table.setModel(modelo);
-
-				for ( int x=1 ; x<= numeroColumnas ; x++){
-					modelo.addColumn(rsMD.getColumnLabel(x));
-
-				}
-
-				while (rst.next()){
-					Object [] fila = new Object [numeroColumnas];
-
-					for (int i = 0 ; i < numeroColumnas ; i++){
-						fila[i]=rst.getObject(i+1);
-
-					}
-
-					modelo.addRow(fila);
-
-				}
-			}catch (SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
-			}
+			profesores=prof.mostrarProfesores();
 
 		}
 

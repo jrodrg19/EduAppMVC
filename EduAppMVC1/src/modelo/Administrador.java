@@ -3,6 +3,20 @@ package modelo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import databaseModel.Notas;
+import databaseModel.Profesores;
+import databaseModel.Usuarios;
+import databaseModel.Alumnos;
+import databaseModel.Asignaturas;
+
 
 public class Administrador {
 
@@ -13,6 +27,7 @@ public class Administrador {
 	private	String Admin_Telefono;
 	private String Admin_DNI;
 	private Connection connection;
+	private Session session;
 
 	public Administrador() {
 
@@ -69,234 +84,276 @@ public class Administrador {
 
 	public void nuevoProfesor(Profesor nuevo){
 
-		String sql = "INSERT INTO PROFESORES (Prof_Codigo,Prof_Nombre,Prof_Apellidos,Prof_Edad,Prof_Telefono,Prof_DNI,Prof_Curso) VALUES (?,?,?,?,?,?,?)";
-
-		PreparedStatement statement;
+		session = HibernateConection.getSessionFactoru().openSession();
+		Transaction tx = null;
 
 		try {
-			statement = connection.prepareStatement(sql);
-
-			statement.setString(1, nuevo.getProf_Cod());
-			statement.setString(2, nuevo.getProf_Nombre());
-			statement.setString(3, nuevo.getProf_Apellidos());
-			statement.setString(4, nuevo.getProf_Edad());
-			statement.setString(5, nuevo.getProf_Telefono());
-			statement.setString(6, nuevo.getProf_DNI());
-			statement.setString(7, nuevo.getProf_Curso());
-
-			statement.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			tx = session.beginTransaction();
+			Profesores nuevoBd=new Profesores(nuevo.getProf_Cod(),nuevo.getProf_Nombre(),nuevo.getProf_Apellidos(),
+											  nuevo.getProf_Edad(),nuevo.getProf_Telefono(),
+											  nuevo.getProf_DNI(), nuevo.getProf_Curso());  
+			session.save(nuevoBd); 
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		} finally {
+			session.close(); 
 		}
 
 	}
 
 	public void nuevoAlumno(Alumno nuevo){
 
-		String sql = "INSERT INTO ALUMNOS (Alum_Codigo,Alum_Nombre,Alum_Apellidos,Alum_Edad,Alum_Telefono,Alum_DNI,Alum_Curso) VALUES (?,?,?,?,?,?,?)";
-
-		PreparedStatement statement;
+		session = HibernateConection.getSessionFactoru().openSession();
+		Transaction tx = null;
 
 		try {
-
-			statement = connection.prepareStatement(sql);
-
-			statement.setString(1, nuevo.getAlum_Cod());
-			statement.setString(2, nuevo.getAlum_Nombre());
-			statement.setString(3, nuevo.getAlum_Apellidos());
-			statement.setString(4, nuevo.getAlum_Edad());
-			statement.setString(5, nuevo.getAlum_Telefono());
-			statement.setString(6, nuevo.getAlum_DNI());
-			statement.setString(7, nuevo.getAlum_Curso());
-
-			statement.executeUpdate();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			tx = session.beginTransaction();
+			Alumnos nuevaBd=new Alumnos(nuevo.getAlum_Cod(),nuevo.getAlum_Nombre(),nuevo.getAlum_Apellidos(),
+							          nuevo.getAlum_Edad(),nuevo.getAlum_Telefono(),nuevo.getAlum_DNI(),
+							          nuevo.getAlum_Curso());  
+			session.save(nuevaBd); 
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		} finally {
+			session.close(); 
 		}
 
 	}
 
 	public void nuevoUsuario(Usuario user){
 
-		String sql = "INSERT INTO USUARIOS (Usuario_Cod,Usuario_pass,Usuario_tipo) VALUES (?,?,?)";
+		session = HibernateConection.getSessionFactoru().openSession();
+		Transaction tx = null;
 
 		try {
-
-			PreparedStatement statement = connection.prepareStatement(sql);
-
-			statement.setString(1, user.getUsuario_Cod());
-			statement.setString(2, user.getUsuario_pass());
-			statement.setString(3, user.getUsuario_tipo());
-
-			statement.executeUpdate();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			tx = session.beginTransaction();
+			Usuarios nuevaBd=new Usuarios(user.getUsuario_Cod(),user.getUsuario_pass(),user.getUsuario_tipo());  
+			session.save(nuevaBd); 
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		} finally {
+			session.close(); 
 		}
 
 	}
 
-	public void modificarAlumno(Alumno modificado){
+	public void modificarAlumno(Alumno mod){
 
-		String sql = "UPDATE ALUMNOS SET  Alum_Nombre=?, Alum_Apellidos=?, Alum_Edad=?, Alum_Telefono=?, Alum_DNI=?,Alum_Curso=? "
-				+ "WHERE Alum_Codigo=?";
+		session = HibernateConection.getSessionFactoru().openSession();
+		Transaction tx = null;
 
-		try{
+		try {
 
-			PreparedStatement statement = connection.prepareStatement(sql);
+			tx = session.beginTransaction();
+			Alumnos alumMod = (Alumnos)session.get(Alumnos.class, mod.getAlum_Cod()); 
+			
+			alumMod.setAlumCodigo(mod.getAlum_Cod());
+			alumMod.setAlumNombre(mod.getAlum_Nombre());
+			alumMod.setAlumApellidos(mod.getAlum_Apellidos());
+			alumMod.setAlumEdad(mod.getAlum_Edad());
+			alumMod.setAlumTelefono(mod.getAlum_Telefono());
+			alumMod.setAlumDni(mod.getAlum_DNI());
+			alumMod.setAlumCurso(mod.getAlum_Curso());
+			
+			session.update(alumMod);
+			tx.commit();
 
-			statement.setString(1, modificado.getAlum_Nombre());
-			statement.setString(2, modificado.getAlum_Apellidos());
-			statement.setString(3, modificado.getAlum_Edad());
-			statement.setString(4, modificado.getAlum_Telefono());
-			statement.setString(5, modificado.getAlum_DNI());
-			statement.setString(6, modificado.getAlum_Curso());
-			statement.setString(7, modificado.getAlum_Cod());
-
-			statement.executeUpdate();
-		
-		}catch (SQLException L) {
-			// TODO Auto-generated catch block
-			L.printStackTrace();
+		} catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		} finally {
+			session.close(); 
 		}
 
 	}
 
 	public void modificarProfesor(Profesor mod){
 
-		String sql = "UPDATE PROFESORES SET  Prof_Nombre=?, Prof_Apellidos=?, Prof_Edad=?, Prof_Telefono=?, Prof_DNI=?,Prof_Curso=? "
-				+ "WHERE Prof_Codigo=?";
+		session = HibernateConection.getSessionFactoru().openSession();
+		Transaction tx = null;
 
-		PreparedStatement statement;
 		try {
 
-			statement = connection.prepareStatement(sql);
+			tx = session.beginTransaction();
+			Profesores profMod = (Profesores)session.get(Profesores.class, mod.getProf_Cod()); 
 
-			statement.setString(1, mod.getProf_Cod());
-			statement.setString(2, mod.getProf_Nombre());
-			statement.setString(3, mod.getProf_Apellidos());
-			statement.setString(4, mod.getProf_Edad());
-			statement.setString(5, mod.getProf_Telefono());
-			statement.setString(6, mod.getProf_DNI());
-			statement.setString(7, mod.getProf_Curso());
+			profMod.setProfCodigo(mod.getProf_Cod());
+			profMod.setProfNombre(mod.getProf_Nombre());
+			profMod.setProfApellidos(mod.getProf_Apellidos());
+			profMod.setProfEdad(mod.getProf_Edad());
+			profMod.setProfTelefono(mod.getProf_Telefono());
+			profMod.setProfDni(mod.getProf_DNI());
+			profMod.setProfCurso(mod.getProf_Curso());
 
-			statement.executeUpdate();
+			session.update(profMod);
+			tx.commit();
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		} finally {
+			session.close(); 
 		}
+	
 
 	}
 
 	public void eliminarUsuario(String usuario_Cod){
 
-		String sql = "DELETE FROM  USUARIOS WHERE Usuario_Cod=?";		
-
-		PreparedStatement statement;
+		session = HibernateConection.getSessionFactoru().openSession();
+		Transaction tx = null;
+		
 		try {
-
-			statement = connection.prepareStatement(sql);
-
-			statement.setString(1, usuario_Cod);
-
-			statement.executeUpdate();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			tx = session.beginTransaction();
+			Usuarios userDel = (Usuarios)session.get(Usuarios.class, usuario_Cod); 
+			session.delete(userDel); 
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		} finally {
+			session.close(); 
 		}
-
+		
 	}
 
 	public void modificarUsuario(Usuario user){
 
-		String sql = "UPDATE USUARIOS SET  Usuario_pass=?, Usuario_tipo=? " + "WHERE Usuario_Cod=?";
+		session = HibernateConection.getSessionFactoru().openSession();
+		Transaction tx = null;
 
 		try {
 
-			PreparedStatement statement = connection.prepareStatement(sql);
+			tx = session.beginTransaction();
+			Usuarios userMod = (Usuarios)session.get(Usuarios.class, user.getUsuario_Cod()); 
 
-			statement.setString(1, user.getUsuario_pass());
-			statement.setString(2, user.getUsuario_tipo());
-			statement.setString(3, user.getUsuario_Cod());
+			userMod.setUsuarioCod(user.getUsuario_Cod());
+			userMod.setUsuarioPass(user.getUsuario_pass());
+			userMod.setUsuarioTipo(user.getUsuario_tipo());
 
-			statement.executeUpdate();
+			session.update(userMod);
+			tx.commit();
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		} finally {
+			session.close(); 
 		}
 
 	}
 
 	public void nuevaAsignatura(Asignatura asig) {
 
-		String sql = "INSERT INTO ASIGNATURAS (Asig_Codigo,Asig_Nombre,Prof_Asig_Cod) VALUES (?,?,?)";
+		session = HibernateConection.getSessionFactoru().openSession();
+		Transaction tx = null;
 
 		try {
-
-			PreparedStatement statement = connection.prepareStatement(sql);
-
-			statement.setString(1, asig.getAsig_Cod());
-			statement.setString(2, asig.getAsig_Nombre());
-			statement.setString(3, asig.getProf_Asig_Cod());
-
-			statement.executeUpdate();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			tx = session.beginTransaction();
+			Asignaturas nuevaBd=new Asignaturas(asig.getAsig_Cod(),asig.getAsig_Nombre(),asig.getProf_Asig_Cod());  
+			session.save(nuevaBd); 
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		} finally {
+			session.close(); 
 		}
 
 	}
 
 	public void eliminarAsignatura(String asignatura_Cod) {
-		String sql = "DELETE FROM  ASIGNATURAS WHERE Asig_Codigo=?";
-
-		PreparedStatement statement;
+		
+		session = HibernateConection.getSessionFactoru().openSession();
+		Transaction tx = null;
+		
 		try {
-			statement = connection.prepareStatement(sql);
-
-			statement.setString(1, asignatura_Cod);
-
-			statement.executeUpdate();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			tx = session.beginTransaction();
+			Asignaturas asigDel = (Asignaturas)session.get(Asignaturas.class, asignatura_Cod); 
+			session.delete(asigDel); 
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		} finally {
+			session.close(); 
 		}
-
+		
 	}
 
 	public void modificarAsignatura(Asignatura mod) {
-		String sql = "UPDATE ASIGNATURAS SET  Asig_Nombre=?,Prof_Asig_Cod=?" + "WHERE Asig_Codigo=?"; 
+		
+		session = HibernateConection.getSessionFactoru().openSession();
+		Transaction tx = null;
 
 		try {
 
-			PreparedStatement statement = connection.prepareStatement(sql);
+			tx = session.beginTransaction();
+			Asignaturas asiNueva = (Asignaturas)session.get(Asignaturas.class, mod.getAsig_Cod()); 
 
-			statement.setString(3, mod.getAsig_Cod());
-			statement.setString(1, mod.getAsig_Nombre());
-			statement.setString(2, mod.getProf_Asig_Cod());
+			asiNueva.setAsigCodigo(mod.getAsig_Cod());
+			asiNueva.setAsigNombre(mod.getAsig_Nombre());
+			asiNueva.setProfAsigCod(mod.getProf_Asig_Cod());
 
-			statement.executeUpdate();
-			
-		}catch (SQLException L) {
-			// TODO Auto-generated catch block
-			L.printStackTrace();
+			session.update(asiNueva);
+			tx.commit();
+
+		} catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		} finally {
+			session.close(); 
 		}
 
 	}
 
-	public String generarListadoAlumnos(){
+	public ArrayList<Alumnos> generarListadoAlumnos(String curso){
 
-		String sql = "SELECT * FROM ALUMNOS WHERE Alum_Curso = ?";
-		return sql;
+		ArrayList<Alumnos> alumnos =new ArrayList<>();
+		session = HibernateConection.getSessionFactoru().openSession();
+	      Transaction tx = null;
+	      try {
+	         tx = session.beginTransaction();
+	         List alumnosBD = session.createQuery("FROM Alumnos WHERE curso = "+curso).list(); 
+	         for (Iterator iterator1 = alumnosBD.iterator(); iterator1.hasNext();){
+	           alumnos.add((Alumnos) iterator1.next()); 
+	         }
+	         tx.commit();
+	      } catch (HibernateException e) {
+	         if (tx!=null) tx.rollback();
+	         e.printStackTrace(); 
+	      } finally {
+	         session.close(); 
+	      }
+	      return alumnos;
+		
+	}
+
+	public ArrayList<Usuarios> mostrarUsers() {
+
+		ArrayList<Usuarios> usuarios =new ArrayList<>();
+		session = HibernateConection.getSessionFactoru().openSession();
+	      Transaction tx = null;
+	      try {
+	         tx = session.beginTransaction();
+	         List userBD = session.createQuery("FROM Usuarios").list(); 
+	         for (Iterator iterator1 = userBD.iterator(); iterator1.hasNext();){
+	           usuarios.add((Usuarios) iterator1.next()); 
+	         }
+	         tx.commit();
+	      } catch (HibernateException e) {
+	         if (tx!=null) tx.rollback();
+	         e.printStackTrace(); 
+	      } finally {
+	         session.close(); 
+	      }
+	      return usuarios;
 		
 	}
 

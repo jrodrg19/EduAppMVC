@@ -39,7 +39,6 @@ public class AdministradorIG extends JFrame {
 	public JTextField telef_field;
 	public JTextField DNI_field;
 	public JTextField Curso_field;
-	public JTable table;
 	public JTextField codigo_field;
 	public JTextField codigous_field;
 	public JTextField contra_field;
@@ -64,6 +63,22 @@ public class AdministradorIG extends JFrame {
 	public JButton btnEliminarAsignatura;
 	public JButton btnModificarAsignatura;
 	public JButton btnGenerarListadoCurso;
+	private JPanel panel;
+	private JLabel label_1;
+	private JLabel label_2;
+	private JLabel label_3;
+	private JLabel label_4;
+	private JLabel label_5;
+	private JLabel label_6;
+	private JLabel label_7;
+	public JPanel panel_1;
+	public JLabel cod;
+	public JLabel nom;
+	public JLabel ap;
+	public JLabel edad;
+	public JLabel dni;
+	public JLabel tlf;
+	public JLabel curso;
 	
 	
 	/**
@@ -116,8 +131,6 @@ public class AdministradorIG extends JFrame {
 		btnMostrarAlum = new JButton("Mostrar Alumnos");
 		
 		btnMostrarProf = new JButton("Mostrar Profesor");
-		
-		JScrollPane scrollPane = new JScrollPane();
 		
 		codigo_field = new JTextField();
 		codigo_field.setColumns(10);
@@ -194,6 +207,70 @@ public class AdministradorIG extends JFrame {
 		
 		codigoprofasg_field = new JTextField();
 		codigoprofasg_field.setColumns(10);
+		
+		panel = new JPanel();
+		panel.setLayout(null);
+		
+		label_1 = new JLabel("Nombre");
+		label_1.setBounds(72, 0, 60, 19);
+		panel.add(label_1);
+		
+		label_2 = new JLabel("Apellidos");
+		label_2.setBounds(142, 0, 60, 19);
+		panel.add(label_2);
+		
+		label_3 = new JLabel("Edad");
+		label_3.setBounds(212, 0, 46, 19);
+		panel.add(label_3);
+		
+		label_4 = new JLabel("Codigo");
+		label_4.setBounds(10, 0, 60, 19);
+		panel.add(label_4);
+		
+		label_5 = new JLabel("Telefono");
+		label_5.setBounds(330, 0, 71, 19);
+		panel.add(label_5);
+		
+		label_6 = new JLabel("Dni");
+		label_6.setBounds(269, 1, 51, 17);
+		panel.add(label_6);
+		
+		label_7 = new JLabel("Curso");
+		label_7.setBounds(411, 0, 60, 19);
+		panel.add(label_7);
+		
+		panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBounds(0, 21, 471, 19);
+		panel.add(panel_1);
+		
+		cod = new JLabel("");
+		cod.setBounds(0, 0, 61, 19);
+		panel_1.add(cod);
+		
+		nom = new JLabel("");
+		nom.setBounds(58, 0, 61, 19);
+		panel_1.add(nom);
+		
+		ap = new JLabel("");
+		ap.setBounds(129, 0, 74, 19);
+		panel_1.add(ap);
+		
+		edad = new JLabel("");
+		edad.setBounds(201, 0, 53, 19);
+		panel_1.add(edad);
+		
+		dni = new JLabel("");
+		dni.setBounds(243, 0, 74, 19);
+		panel_1.add(dni);
+		
+		tlf = new JLabel("");
+		tlf.setBounds(315, 0, 74, 19);
+		panel_1.add(tlf);
+		
+		curso = new JLabel("");
+		curso.setBounds(399, 0, 74, 19);
+		panel_1.add(curso);
 		
 		GroupLayout gl_JTable1 = new GroupLayout(JTable1);
 		gl_JTable1.setHorizontalGroup(
@@ -302,8 +379,8 @@ public class AdministradorIG extends JFrame {
 					.addGap(94))
 				.addGroup(gl_JTable1.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 841, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(53, Short.MAX_VALUE))
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(361, Short.MAX_VALUE))
 		);
 		gl_JTable1.setVerticalGroup(
 			gl_JTable1.createParallelGroup(Alignment.LEADING)
@@ -314,9 +391,9 @@ public class AdministradorIG extends JFrame {
 						.addComponent(lblAlumnoprofesor)
 						.addComponent(lblAsignatura)
 						.addComponent(lblUsuario))
-					.addGroup(gl_JTable1.createParallelGroup(Alignment.LEADING, false)
+					.addPreferredGap(ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+					.addGroup(gl_JTable1.createParallelGroup(Alignment.TRAILING, false)
 						.addGroup(gl_JTable1.createSequentialGroup()
-							.addGap(15)
 							.addGroup(gl_JTable1.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblCodigo)
 								.addComponent(codigo_field, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -330,8 +407,7 @@ public class AdministradorIG extends JFrame {
 								.addComponent(lblContrasea)
 								.addComponent(contra_field, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(nombre_field, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(Alignment.TRAILING, gl_JTable1.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(gl_JTable1.createSequentialGroup()
 							.addGroup(gl_JTable1.createParallelGroup(Alignment.BASELINE)
 								.addComponent(codigoasg_field, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblCodigo_2))
@@ -396,39 +472,10 @@ public class AdministradorIG extends JFrame {
 								.addComponent(TextCurso, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblCurso_1)))
 						.addComponent(btnModificarUsuario))
-					.addPreferredGap(ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+					.addGap(18))
 		);
-		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"Codigo", "Nombre", "Apellido", "Edad", "Telefono", "DNI", "Curso"
-			}
-		));
-		scrollPane.setViewportView(table);
 		JTable1.setLayout(gl_JTable1);
 	}
 }

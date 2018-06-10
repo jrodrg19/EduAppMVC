@@ -8,9 +8,14 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 
+import databaseModel.Alumnos;
+import databaseModel.Asignaturas;
+import databaseModel.Profesores;
+import databaseModel.Usuarios;
 import modelo.*;
 import vista.AdministradorIG;
 
@@ -98,46 +103,7 @@ public class ControlAdmin implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 
-			try{
-				Connection connection = HibernateConection.getCon();
 
-				String  Curso = ventAdmin.TextCurso.getText();
-
-				Administrador adm = new Administrador();
-				String sql=adm.generarListadoAlumnos();
-				//String sql = "SELECT * FROM ALUMNOS WHERE Alum_Curso = ?";
-				PreparedStatement statement = connection.prepareStatement(sql);
-
-
-				statement.setString(1, Curso);
-
-				ResultSet rst =statement.executeQuery( );
-				ResultSetMetaData rsMD = rst.getMetaData();
-				int numeroColumnas = rsMD.getColumnCount();
-
-				DefaultTableModel modelo = new DefaultTableModel();
-				ventAdmin.table.setModel(modelo);
-
-				for ( int x=1 ; x<= numeroColumnas ; x++){
-					modelo.addColumn(rsMD.getColumnLabel(x));
-
-				}
-
-				while (rst.next()){
-					Object [] fila = new Object [numeroColumnas];
-
-					for (int i = 0 ; i < numeroColumnas ; i++){
-						fila[i]=rst.getObject(i+1);
-
-					}
-
-					modelo.addRow(fila);
-
-				}
-			}catch (SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
-			}
 
 		}
 
@@ -289,41 +255,27 @@ public class ControlAdmin implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 
-			try{
 
-				Connection connection = HibernateConection.getCon();
+			Profesor alumn=new Profesor();
 
-				Statement stm = connection.createStatement();
-				Alumno alu = new Alumno();
-				String sql=alu.mostrarAlumnos();
-				//String sql = "select * FROM ALUMNOS";
-				ResultSet rst = stm.executeQuery(sql);
-				ResultSetMetaData rsMD = rst.getMetaData();
-				int numeroColumnas = rsMD.getColumnCount();
+			ArrayList<Alumnos> alumnos=alumn.mostrarAlumnos();
 
-				DefaultTableModel modelo = new DefaultTableModel();
-				ventAdmin.table.setModel(modelo);
+			int pos=0;
 
-				for ( int x=1 ; x<= numeroColumnas ; x++){
-					modelo.addColumn(rsMD.getColumnLabel(x));
+			for(int i=0;i< alumnos.size();i++) {
 
-				}
 
-				while (rst.next()){
-					Object [] fila = new Object [numeroColumnas];
+				ventAdmin.cod.setText(alumnos.get(i).getAlumCodigo());
+				ventAdmin.nom.setText(alumnos.get(i).getAlumNombre());
+				ventAdmin.ap.setText(alumnos.get(i).getAlumApellidos());
+				ventAdmin.edad.setText(alumnos.get(i).getAlumEdad());
+				ventAdmin.dni.setText(alumnos.get(i).getAlumDni());
+				ventAdmin.tlf.setText(alumnos.get(i).getAlumTelefono());
+				ventAdmin.curso.setText(alumnos.get(i).getAlumCurso());
 
-					for (int i = 0 ; i < numeroColumnas ; i++){
-						fila[i]=rst.getObject(i+1);
 
-					}
-
-					modelo.addRow(fila);
-
-				}
-			}catch (SQLException ex) {
-				// TODO Auto-generated catch block
-				ex.printStackTrace();
 			}
+
 
 		}
 
@@ -346,42 +298,10 @@ public class ControlAdmin implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 
-			try{
+			Alumno nuevo=new Alumno();
 
-				Connection connection = HibernateConection.getCon();
-
-
-				Statement stm = connection.createStatement();
-				Asignatura asg = new Asignatura();
-				String sql = asg.mostrarAsignatura();
-				//String sql = "select * FROM ASIGNATURAS";
-				ResultSet rst = stm.executeQuery(sql);
-				ResultSetMetaData rsMD = rst.getMetaData();
-				int numeroColumnas = rsMD.getColumnCount();
-
-				DefaultTableModel modelo = new DefaultTableModel();
-				ventAdmin.table.setModel(modelo);
-
-				for ( int x=1 ; x<= numeroColumnas ; x++){
-					modelo.addColumn(rsMD.getColumnLabel(x));
-
-				}
-
-				while (rst.next()){
-					Object [] fila = new Object [numeroColumnas];
-
-					for (int i = 0 ; i < numeroColumnas ; i++){
-						fila[i]=rst.getObject(i+1);
-
-					}
-
-					modelo.addRow(fila);
-
-				}
-			}catch (SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
-			}
+			ArrayList<Asignaturas> asig=new ArrayList<>();
+			asig=nuevo.mostrarAsignaturas();
 
 		}
 
@@ -404,40 +324,11 @@ public class ControlAdmin implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 
-			try{
-				Connection connection = HibernateConection.getCon();
+			Profesor nuevo=new Profesor();
 
-				Statement stm = connection.createStatement();
-				Profesor prof = new Profesor();
-				String sql=prof.mostrarProfesor();
-				//String sql = "select * FROM PROFESORES";
-				ResultSet rst = stm.executeQuery(sql);
-				ResultSetMetaData rsMD = rst.getMetaData();
-				int numeroColumnas = rsMD.getColumnCount();
+			ArrayList<Profesores> prof=new ArrayList<>();
+			prof=nuevo.mostrarProfesores();
 
-				DefaultTableModel modelo = new DefaultTableModel();
-				ventAdmin.table.setModel(modelo);
-
-				for ( int x=1 ; x<= numeroColumnas ; x++){
-					modelo.addColumn(rsMD.getColumnLabel(x));
-
-				}
-
-				while (rst.next()){
-					Object [] fila = new Object [numeroColumnas];
-
-					for (int i = 0 ; i < numeroColumnas ; i++){
-						fila[i]=rst.getObject(i+1);
-
-					}
-
-					modelo.addRow(fila);
-
-				}
-			}catch (SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
-			}
 		}
 
 	}
@@ -459,41 +350,9 @@ public class ControlAdmin implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 
-			try{
-
-				Connection connection = HibernateConection.getCon();
-
-				Statement stm = connection.createStatement();
-				Usuario us = new Usuario();
-				String sql=us.mostrarUsuario();
-				//String sql = "select * FROM USUARIOS";
-				ResultSet rst = stm.executeQuery(sql);
-				ResultSetMetaData rsMD = rst.getMetaData();
-				int numeroColumnas = rsMD.getColumnCount();
-
-				DefaultTableModel modelo = new DefaultTableModel();
-				ventAdmin.table.setModel(modelo);
-
-				for ( int x=1 ; x<= numeroColumnas ; x++){
-					modelo.addColumn(rsMD.getColumnLabel(x));
-
-				}
-
-				while (rst.next()){
-					Object [] fila = new Object [numeroColumnas];
-
-					for (int i = 0 ; i < numeroColumnas ; i++){
-						fila[i]=rst.getObject(i+1);
-
-					}
-
-					modelo.addRow(fila);
-
-				}
-			}catch (SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
-			}
+			Administrador nuevo=new Administrador();
+			ArrayList<Usuarios> usersBD=new ArrayList<>();
+			usersBD=nuevo.mostrarUsers();
 
 		}
 

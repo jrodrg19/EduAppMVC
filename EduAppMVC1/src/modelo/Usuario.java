@@ -16,9 +16,7 @@ public class Usuario {
 	}  
 
 	public Usuario(String cod,String pass,String tipo){
-		
-		connection = HibernateConection.getCon();
-		
+				
 		this.setUsuario_Cod(cod);
 		this.setUsuario_pass(pass);
 		this.setUsuario_tipo(tipo);
@@ -66,13 +64,6 @@ public class Usuario {
 	
 		
 		return set;
-
-	}
-
-	public String mostrarUsuario(){
-
-		String sql = "select * FROM USUARIOS";			
-		return sql;
 
 	}
 

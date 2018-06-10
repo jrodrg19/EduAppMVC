@@ -29,7 +29,6 @@ import java.awt.event.ActionEvent;
 public class AlumnoIG extends JFrame {
 
 	public JPanel contentPane;
-	public JTable table;
 	public JTextField codigo_field;
 	
 	public JButton btnMostrarProfesor;
@@ -38,6 +37,19 @@ public class AlumnoIG extends JFrame {
 	public JButton btnBuscarCalificacion;
 	public JButton btnBuscarDatos;
 	public JButton btnMostrarNota;
+	private JLabel lblCodigo;
+	private JLabel lblTelefono;
+	private JLabel lblDni;
+	private JLabel lblCurso;
+	private JPanel panel_1;
+	public JPanel panel;
+	public JLabel cod;
+	public JLabel nom;
+	public JLabel ap;
+	public JLabel edad;
+	public JLabel dni;
+	public JLabel tlf;
+	public JLabel curso;
 
 	/**
 	 * Launch the application.
@@ -85,19 +97,24 @@ public class AlumnoIG extends JFrame {
 		btnBuscarDatos = new JButton("Buscar Datos");
 		
 		btnMostrarNota = new JButton("Mostrar Nota");
+		
+		panel = new JPanel();
 	
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(237)
 					.addComponent(lblAlumno)
 					.addContainerGap(252, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 454, GroupLayout.PREFERRED_SIZE))
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 481, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(27)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -140,65 +157,74 @@ public class AlumnoIG extends JFrame {
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblCodigoAlumno)
 								.addComponent(codigo_field, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-					.addPreferredGap(ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
 					.addContainerGap())
 		);
+		panel.setLayout(null);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"Codigo", "Nombre", "Apellidos", "Edad", "Telefono", "DNI", "Curso"
-			}
-		));
-		scrollPane.setViewportView(table);
+		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setBounds(72, 0, 60, 19);
+		panel.add(lblNombre);
+		
+		JLabel lblApellidos = new JLabel("Apellidos");
+		lblApellidos.setBounds(142, 0, 60, 19);
+		panel.add(lblApellidos);
+		
+		JLabel lblEdad = new JLabel("Edad");
+		lblEdad.setBounds(212, 0, 46, 19);
+		panel.add(lblEdad);
+		
+		lblCodigo = new JLabel("Codigo");
+		lblCodigo.setBounds(10, 0, 60, 19);
+		panel.add(lblCodigo);
+		
+		lblTelefono = new JLabel("Telefono");
+		lblTelefono.setBounds(330, 0, 71, 19);
+		panel.add(lblTelefono);
+		
+		lblDni = new JLabel("Dni");
+		lblDni.setBounds(269, 1, 51, 17);
+		panel.add(lblDni);
+		
+		lblCurso = new JLabel("Curso");
+		lblCurso.setBounds(411, 0, 60, 19);
+		panel.add(lblCurso);
+		
+		panel_1 = new JPanel();
+		panel_1.setBounds(0, 21, 471, 19);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		cod = new JLabel("");
+		cod.setBounds(0, 0, 61, 19);
+		panel_1.add(cod);
+		
+		nom = new JLabel("");
+		nom.setBounds(58, 0, 61, 19);
+		panel_1.add(nom);
+		
+		ap = new JLabel("");
+		ap.setBounds(129, 0, 74, 19);
+		panel_1.add(ap);
+		
+		edad = new JLabel("");
+		edad.setBounds(201, 0, 53, 19);
+		panel_1.add(edad);
+		
+		dni = new JLabel("");
+		dni.setBounds(243, 0, 74, 19);
+		panel_1.add(dni);
+		
+		tlf = new JLabel("");
+		tlf.setBounds(315, 0, 74, 19);
+		panel_1.add(tlf);
+		
+		curso = new JLabel("");
+		curso.setBounds(399, 0, 74, 19);
+		panel_1.add(curso);
 		contentPane.setLayout(gl_contentPane);
 	}
 }

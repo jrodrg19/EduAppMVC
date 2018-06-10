@@ -3,6 +3,8 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,11 +12,18 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 import org.omg.IOP.CodecFactoryOperations;
 
+import databaseModel.Alumnos;
+import databaseModel.Asignaturas;
+import databaseModel.Notas;
+import databaseModel.Profesores;
 import modelo.*;
 import vista.AlumnoIG;
 
@@ -37,59 +46,24 @@ public class ControlAlumno implements ActionListener{
 		this.ventanaAlum.btnMostrarAsignatura.addActionListener(new BtnMostrarAsig(ventanaAlum));
 		this.ventanaAlum.btnMostrarNota.addActionListener(new BtnMostrarNota(ventanaAlum));
 		this.ventanaAlum.btnMostrarProfesor.addActionListener(new BtnMostrarProfesor(ventanaAlum));
-		
+
 	}
-	
+
 	/**
 	 * 
 	 * ActionListener para el boton de buscar califición 
 	 * 
 	 */
 	public void actionPerformed(ActionEvent e) {
+
+		Alumno nuevo=new Alumno();
+
+		String  nota_Alum_Codigo = ventanaAlum.codigo_field.getText();
 		
-		try{
-			Connection connection = HibernateConection.getCon();
-			
-			String  Nota_Alum_Codigo = ventanaAlum.codigo_field.getText();
-			
-			//String sql = "SELECT * FROM NOTAS WHERE Nota_Alum_Codigo = ?";
-			Nota nota = new Nota();
-			String sql=nota.buscarCalificacion();
-			PreparedStatement statement = connection.prepareStatement(sql);
-			
-			
-			 statement.setString(1, Nota_Alum_Codigo);
-			
-			ResultSet rst =statement.executeQuery( );
-			ResultSetMetaData rsMD = rst.getMetaData();
-			int numeroColumnas = rsMD.getColumnCount();
-			
-			DefaultTableModel modelo = new DefaultTableModel();
-			ventanaAlum.table.setModel(modelo);
-			
-			for ( int x=1 ; x<= numeroColumnas ; x++){
-				modelo.addColumn(rsMD.getColumnLabel(x));
-				
-			}
-			
-			while (rst.next()){
-				Object [] fila = new Object [numeroColumnas];
-				
-				for (int i = 0 ; i < numeroColumnas ; i++){
-					fila[i]=rst.getObject(i+1);
-					
-				}
-				
-				modelo.addRow(fila);
-				
-			}
-			}catch (SQLException L) {
-			// TODO Auto-generated catch block
-			L.printStackTrace();
-		}
-		
+		Notas notaAl=nuevo.buscarCalificacion(nota_Alum_Codigo);
+
 	}
-	
+
 	/**
 	 * 
 	 * @author Javier
@@ -98,59 +72,25 @@ public class ControlAlumno implements ActionListener{
 	class BtnBuscarDatos implements ActionListener{
 
 		private AlumnoIG ventanaAl;
-		
+
 		public BtnBuscarDatos(AlumnoIG ventanaAlum) {
 
 			this.ventanaAl=ventanaAlum;
-		
+
 		}
-		
+
 		public void actionPerformed(ActionEvent e) {
-			try{
-				
-			Connection connection = HibernateConection.getCon();
-			String  Nota_Alum_Codigo = ventanaAl.codigo_field.getText();
 			
-			//String sql = "SELECT * FROM ALUMNOS WHERE Alum_Codigo = ?";
-			Alumno alu = new Alumno();
-			String sql=alu.buscarDatos();
-			PreparedStatement statement = connection.prepareStatement(sql);
+			Alumno nuevo=new Alumno();
+
+			String  nota_Alum_Codigo = ventanaAl.codigo_field.getText();
 			
-			
-			statement.setString(1, Nota_Alum_Codigo);
-			
-			ResultSet rst =statement.executeQuery( );
-			ResultSetMetaData rsMD = rst.getMetaData();
-			int numeroColumnas = rsMD.getColumnCount();
-			
-			DefaultTableModel modelo = new DefaultTableModel();
-			ventanaAl.table.setModel(modelo);
-			
-			for ( int x=1 ; x<= numeroColumnas ; x++){
-				modelo.addColumn(rsMD.getColumnLabel(x));
-				
-			}
-			
-			while (rst.next()){
-				Object [] fila = new Object [numeroColumnas];
-				
-				for (int i = 0 ; i < numeroColumnas ; i++){
-					fila[i]=rst.getObject(i+1);
-					
-				}
-				
-				modelo.addRow(fila);
-				
-			}
-			}catch ( SQLException L) {
-			// TODO Auto-generated catch block
-			L.printStackTrace();
+			Notas notaAl=nuevo.buscarCalificacion(nota_Alum_Codigo);
+
 		}
-			
-		}
-		
+
 	}
-	
+
 	/**
 	 * 
 	 * @author Javier
@@ -165,47 +105,29 @@ public class ControlAlumno implements ActionListener{
 			this.ventanaAl=ventanaAlum;
 
 		}		
-		
+
 		public void actionPerformed(ActionEvent e) {
-			try{
-				
-				Connection connection=HibernateConection.getCon();
-				
-				Statement stm = connection.createStatement();
-				Alumno alu = new Alumno();
-				String sql=alu.mostrarAlumnos();
-				//String sql = "select * FROM ALUMNOS";
-				ResultSet rst = stm.executeQuery(sql);
-				ResultSetMetaData rsMD = rst.getMetaData();
-				int numeroColumnas = rsMD.getColumnCount();
-				
-				DefaultTableModel modelo = new DefaultTableModel();
-				ventanaAl.table.setModel(modelo);
-				
-				for ( int x=1 ; x<= numeroColumnas ; x++){
-					modelo.addColumn(rsMD.getColumnLabel(x));
-					
-				}
-				
-				while (rst.next()){
-					Object [] fila = new Object [numeroColumnas];
-					
-					for (int i = 0 ; i < numeroColumnas ; i++){
-						fila[i]=rst.getObject(i+1);
-						
-					}
-					
-					modelo.addRow(fila);
-					
-				}
-				}catch ( SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
+
+			Profesor alumn=new Profesor();
+
+			ArrayList<Alumnos> alumnos=alumn.mostrarAlumnos();
+
+			for(int i=0;i< alumnos.size();i++) {
+
+				ventanaAl.cod.setText(alumnos.get(i).getAlumCodigo());
+				ventanaAl.nom.setText(alumnos.get(i).getAlumNombre());
+				ventanaAl.ap.setText(alumnos.get(i).getAlumApellidos());
+				ventanaAl.edad.setText(alumnos.get(i).getAlumEdad());
+				ventanaAl.dni.setText(alumnos.get(i).getAlumDni());
+				ventanaAl.tlf.setText(alumnos.get(i).getAlumTelefono());
+				ventanaAl.curso.setText(alumnos.get(i).getAlumCurso());
+
 			}
+
 		}
-		
+
 	}
-		
+
 	/**
 	 * 
 	 * @author Javier
@@ -222,42 +144,11 @@ public class ControlAlumno implements ActionListener{
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			
-			try{
 
-				Connection connection = HibernateConection.getCon();
+			Alumno alumn=new Alumno();
 
-				Statement stm = connection.createStatement();
-				//String sql = "select * FROM ASIGNATURAS";
-				Asignatura asg = new Asignatura();
-				String sql=asg.mostrarAsignatura();
-				ResultSet rst = stm.executeQuery(sql);
-				ResultSetMetaData rsMD = rst.getMetaData();
-				int numeroColumnas = rsMD.getColumnCount();
+			ArrayList<Asignaturas> asig=alumn.mostrarAsignaturas();
 
-				DefaultTableModel modelo = new DefaultTableModel();
-				ventanaAl.table.setModel(modelo);
-
-				for ( int x=1 ; x<= numeroColumnas ; x++){
-					modelo.addColumn(rsMD.getColumnLabel(x));
-
-				}
-
-				while (rst.next()){
-					Object [] fila = new Object [numeroColumnas];
-
-					for (int i = 0 ; i < numeroColumnas ; i++){
-						fila[i]=rst.getObject(i+1);
-
-					}
-
-					modelo.addRow(fila);
-
-				}
-			}catch (SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
-			}
 		}
 
 	}
@@ -279,40 +170,10 @@ public class ControlAlumno implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
 
-			try{
+			Profesor alumn=new Profesor();
 
-				Connection connection = HibernateConection.getCon();
-
-				Statement stm = connection.createStatement();
-				Nota nota = new Nota();
-				String sql=nota.mostrarNota();
-				ResultSet rst = stm.executeQuery(sql);
-				ResultSetMetaData rsMD = rst.getMetaData();
-				int numeroColumnas = rsMD.getColumnCount();
-
-				DefaultTableModel modelo = new DefaultTableModel();
-				ventanaAl.table.setModel(modelo);
-
-				for ( int x=1 ; x<= numeroColumnas ; x++){
-					modelo.addColumn(rsMD.getColumnLabel(x));
-
-				}
-
-				while (rst.next()){
-					Object [] fila = new Object [numeroColumnas];
-
-					for (int i = 0 ; i < numeroColumnas ; i++){
-						fila[i]=rst.getObject(i+1);
-
-					}
-
-					modelo.addRow(fila);
-
-				}
-			}catch (SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
-			}
+			ArrayList<Notas> notas=alumn.mostrarNotas();
+			
 		}
 
 	}
@@ -335,41 +196,11 @@ public class ControlAlumno implements ActionListener{
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
-			try{
 
-				Connection connection = HibernateConection.getCon();
+			Profesor alumn=new Profesor();
 
-				Statement stm = connection.createStatement();
-				Profesor prof = new Profesor();
-				String sql=prof.mostrarProfesor();
-				ResultSet rst = stm.executeQuery(sql);
-				ResultSetMetaData rsMD = rst.getMetaData();
-				int numeroColumnas = rsMD.getColumnCount();
+			ArrayList<Profesores> notas=alumn.mostrarProfesores();
 
-				DefaultTableModel modelo = new DefaultTableModel();
-				ventanaAl.table.setModel(modelo);
-
-				for ( int x=1 ; x<= numeroColumnas ; x++){
-					modelo.addColumn(rsMD.getColumnLabel(x));
-
-				}
-
-				while (rst.next()){
-					Object [] fila = new Object [numeroColumnas];
-
-					for (int i = 0 ; i < numeroColumnas ; i++){
-
-						fila[i]=rst.getObject(i+1);
-
-					}
-
-					modelo.addRow(fila);
-
-				}
-			}catch (SQLException L) {
-				// TODO Auto-generated catch block
-				L.printStackTrace();
-			}
 		}
 
 	}
